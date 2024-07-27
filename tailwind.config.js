@@ -5,6 +5,7 @@ export default {
     container: {
       center: true,
       padding: 15,
+      
     },
     extend: {},
   },
