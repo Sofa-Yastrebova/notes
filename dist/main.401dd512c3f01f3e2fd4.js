@@ -8999,6 +8999,15 @@ _global["default"]._babelPolyfill = true;
 (() => {
 "use strict";
 
+;// CONCATENATED MODULE: ./src/js/dark-mode.js
+const buttonDarkMode = document.querySelector("#buttonDarkMode");
+const switchDarkMode = () => {
+  document.documentElement.classList.toggle("dark");
+};
+buttonDarkMode.addEventListener("click", switchDarkMode);
+;// CONCATENATED MODULE: ./src/index-entry.js
+
+
 
 })();
 
