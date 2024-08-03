@@ -4,9 +4,23 @@
 
 const btnAddNote = document.querySelector("#btnAddNote");
 
+const buttonAddParams = {
+    tagName: "button",
+    classList: ["bg-cyan-600", "px-9"],
+    id: "",
+    text: "Add",
+};
+
 const initialModal = () => {
-    const fadeBlock = document.createElement("div");
-    document.body.append(fadeBlock);
+    const buttonAdd = creator(buttonAddParams);
+    document.body.append(buttonAdd);
+};
+
+const creator = (elementParams) => {
+    const element = document.createElement(elementParams.tagName);
+    element.textContent = elementParams.text;
+    element.classList.add(...elementParams.classList);
+    return element;
 };
 
 btnAddNote.addEventListener("click", initialModal);
