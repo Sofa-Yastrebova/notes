@@ -9013,29 +9013,30 @@ buttonDarkMode.addEventListener("click", switchDarkMode);
 const btnAddNote = document.querySelector("#btnAddNote");
 const buttonAddParams = {
   tagName: "button",
-  classList: ["bg-cyan-600", "px-9"],
+  classList: ["bg-cyan-600", "px-8", "py-1", "rounded-md", "text-white", "min-w-[110px]", "hover:opacity-75"],
   id: "",
   text: "Add"
 };
 const buttonEditParams = {
   tagName: "button",
-  classList: ["bg-cyan-600", "px-9"],
+  classList: ["bg-cyan-600", "px-8", "py-1", "rounded-md", "text-white", "min-w-[110px]", "hover:opacity-75"],
   id: "",
   text: "Edit"
 };
 const buttonCancelParams = {
   tagName: "button",
-  classList: ["bg-[#CD103E]", "px-9"],
+  classList: ["bg-[#CD103E]", "px-8", "py-1", "rounded-md", "text-white", "min-w-[110px]", "hover:opacity-75"],
   id: "",
   text: "Cancel"
 };
+const fadeBlockParams = {
+  tagName: "div",
+  id: "",
+  classList: ["w-full", "bg-[#D9D9D9]", "h-screen", "opacity-80", "fixed", "top-0", "left-0"]
+};
 const initialModal = () => {
-  const buttonAdd = creator(buttonAddParams);
-  const buttonEdit = creator(buttonEditParams);
-  const buttonCancel = creator(buttonCancelParams);
-  document.body.append(buttonCancel);
-  document.body.append(buttonAdd);
-  document.body.append(buttonEdit);
+  const fadeBlock = creator(fadeBlockParams);
+  document.body.append(fadeBlock);
 };
 const creator = elementParams => {
   const element = document.createElement(elementParams.tagName);
@@ -9044,6 +9045,8 @@ const creator = elementParams => {
   return element;
 };
 btnAddNote.addEventListener("click", initialModal);
+
+// написать проверки для пустых параметров
 ;// CONCATENATED MODULE: ./src/index-entry.js
 
 
