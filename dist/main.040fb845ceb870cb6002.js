@@ -9011,42 +9011,80 @@ buttonDarkMode.addEventListener("click", switchDarkMode);
 // 3.Создать окно и отобразить на странице
 
 const btnAddNote = document.querySelector("#btnAddNote");
-const buttonAddParams = {
-  tagName: "button",
-  classList: ["bg-cyan-600", "px-8", "py-1", "rounded-md", "text-white", "min-w-[110px]", "hover:opacity-75"],
-  id: "",
-  text: "Add"
-};
-const buttonEditParams = {
-  tagName: "button",
-  classList: ["bg-cyan-600", "px-8", "py-1", "rounded-md", "text-white", "min-w-[110px]", "hover:opacity-75"],
-  id: "",
-  text: "Edit"
-};
-const buttonCancelParams = {
-  tagName: "button",
-  classList: ["bg-[#CD103E]", "px-8", "py-1", "rounded-md", "text-white", "min-w-[110px]", "hover:opacity-75"],
-  id: "",
-  text: "Cancel"
+
+// const buttonAddParams = {
+//     tagName: "button",
+//     classList: [
+//         "bg-cyan-600",
+//         "px-8",
+//         "py-1",
+//         "rounded-md",
+//         "text-white",
+//         "min-w-[110px]",
+//         "hover:opacity-75",
+//     ],
+//     id: "",
+//     text: "Add",
+// };
+
+// const buttonEditParams = {
+//     tagName: "button",
+//     classList: [
+//         "bg-cyan-600",
+//         "px-8",
+//         "py-1",
+//         "rounded-md",
+//         "text-white",
+//         "min-w-[110px]",
+//         "hover:opacity-75",
+//     ],
+//     id: "",
+//     text: "Edit",
+// };
+
+// const buttonCancelParams = {
+//     tagName: "button",
+//     classList: [
+//         "bg-[#CD103E]",
+//         "px-8",
+//         "py-1",
+//         "rounded-md",
+//         "text-white",
+//         "min-w-[110px]",
+//         "hover:opacity-75",
+//     ],
+//     id: "",
+//     text: "Cancel",
+// };
+
+const formParams = {
+  tagName: "form",
+  classList: ["max-w-[915px]", "bg-white", "max-h-[558px]", "rounded:10px", "fixed", "top-[50%]", "left-[50%]", "translate-y-2/4", "translate-x-2/4", "w-[100%]", "pr-[30px]", "pl-[30px", "pb-[36px]", "pt-[36px]", "h-[100%]"]
 };
 const fadeBlockParams = {
   tagName: "div",
-  id: "",
-  classList: ["w-full", "bg-[#D9D9D9]", "h-screen", "opacity-80", "fixed", "top-0", "left-0"]
+  classList: ["w-full", "bg-[#D9D9D9]", "h-screen", "opacity-80", "fixed", "top-0", "left-0", "fixed"]
 };
 const initialModal = () => {
   const fadeBlock = creator(fadeBlockParams);
   document.body.append(fadeBlock);
+  const form = creator(formParams);
+  document.body.append(form);
 };
 const creator = elementParams => {
   const element = document.createElement(elementParams.tagName);
-  element.textContent = elementParams.text;
-  element.classList.add(...elementParams.classList);
+  if (elementParams.text) {
+    element.textContent = elementParams.text;
+  }
+  if (elementParams.id) {
+    element.id = elementParams.id;
+  }
+  if (elementParams.classList.length > 0) {
+    element.classList.add(...elementParams.classList);
+  }
   return element;
 };
 btnAddNote.addEventListener("click", initialModal);
-
-// написать проверки для пустых параметров
 ;// CONCATENATED MODULE: ./src/index-entry.js
 
 

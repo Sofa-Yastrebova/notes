@@ -49,6 +49,24 @@ const btnAddNote = document.querySelector("#btnAddNote");
 //     text: "Cancel",
 // };
 
+const formParams = {
+    tagName: "form",
+    classList: [
+        "max-w-[915px]",
+        "w-full",
+        "h-[400px]",
+        "bg-white",
+        "rounded-md",
+        "fixed",
+        "bottom-1/2",
+        "right-1/2",
+        "translate-y-1/2",
+        "translate-x-1/2",
+        "py-[30px]",
+        "px-[36px]",
+    ],
+};
+
 const fadeBlockParams = {
     tagName: "div",
     classList: [
@@ -59,12 +77,15 @@ const fadeBlockParams = {
         "fixed",
         "top-0",
         "left-0",
+        "fixed",
     ],
 };
 
 const initialModal = () => {
     const fadeBlock = creator(fadeBlockParams);
     document.body.append(fadeBlock);
+    const form = creator(formParams);
+    document.body.append(form);
 };
 
 const creator = (elementParams) => {
