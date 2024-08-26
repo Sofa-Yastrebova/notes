@@ -9059,17 +9059,49 @@ const btnAddNote = document.querySelector("#btnAddNote");
 
 const formParams = {
   tagName: "form",
-  classList: ["max-w-[915px]", "bg-white", "max-h-[558px]", "rounded:10px", "fixed", "top-[50%]", "left-[50%]", "translate-y-2/4", "translate-x-2/4", "w-[100%]", "pr-[30px]", "pl-[30px", "pb-[36px]", "pt-[36px]", "h-[100%]"]
+  classList: ["max-w-[915px]", "w-full", "h-[400px]", "bg-white", "rounded-md", "fixed", "bottom-1/2", "right-1/2", "translate-y-1/2", "translate-x-1/2", "py-[30px]", "px-[36px]"]
 };
 const fadeBlockParams = {
   tagName: "div",
   classList: ["w-full", "bg-[#D9D9D9]", "h-screen", "opacity-80", "fixed", "top-0", "left-0", "fixed"]
+};
+const wrapperHeaderFormParams = {
+  tagName: "div",
+  classList: ["max-w-[362px]", "border-b-2", "border-cyan-600"]
+};
+const titleInputParams = {
+  tagName: "input",
+  classList: ["max-w-[330px]", "w-full", "block", "outline-none"]
+};
+const wrapperFakeCheckboxParams = {
+  tagName: "label"
+};
+const inputCheckboxParams = {
+  tagName: "input",
+  attr: {
+    "type": "checkbox"
+  },
+  classList: ["opacity-0", "input"]
+};
+const spanCheckboxParams = {
+  tagName: "span",
+  classList: ["block", "w-6", "h-6", "favoriteButton", "before:content-['']", "before:block", "before:w-5", "before:h-5", "before:bg-cover", "before:bg-center", "before:bg-no-repeat"]
 };
 const initialModal = () => {
   const fadeBlock = creator(fadeBlockParams);
   document.body.append(fadeBlock);
   const form = creator(formParams);
   document.body.append(form);
+  const wrapperHeaderForm = creator(wrapperHeaderFormParams);
+  form.append(wrapperHeaderForm);
+  const titleInput = creator(titleInputParams);
+  wrapperHeaderForm.append(titleInput);
+  const wrapperFakeCheckbox = creator(wrapperFakeCheckboxParams);
+  wrapperHeaderForm.append(wrapperFakeCheckbox);
+  const inputCheckbox = creator(inputCheckboxParams);
+  wrapperFakeCheckbox.append(inputCheckbox);
+  const spanCheckbox = creator(spanCheckboxParams);
+  wrapperFakeCheckbox.append(spanCheckbox);
 };
 const creator = elementParams => {
   const element = document.createElement(elementParams.tagName);
@@ -9079,7 +9111,13 @@ const creator = elementParams => {
   if (elementParams.id) {
     element.id = elementParams.id;
   }
-  if (elementParams.classList.length > 0) {
+  if (elementParams.attr) {
+    for (const key in elementParams.attr) {
+      element.setAttribute(key, elementParams.attr[key]);
+    }
+  }
+  // пересмотреть условие
+  if (elementParams.classList) {
     element.classList.add(...elementParams.classList);
   }
   return element;

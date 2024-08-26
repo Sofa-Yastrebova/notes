@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer utilities {
+    .favoriteButton::before {
+        @apply bg-[url('./img/starBlack.svg')];
+    }
+
+    input:checked + .favoriteButton::before {
+        @apply bg-[url('./img/favoriteButton.svg')];
+    }
+}
