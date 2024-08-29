@@ -10,4 +10,10 @@
     input:checked + .favoriteButton::before {
         @apply bg-[url('./img/favoriteButton.svg')];
     }
+
+    #textareaModal::-webkit-resizer {
+        border: 20px solid transparent;
+        border-right: 20px solid #189ab4;
+        border-bottom: 20px solid #189ab4;
+    }
 }

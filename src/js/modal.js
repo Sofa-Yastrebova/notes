@@ -54,7 +54,6 @@ const formParams = {
     classList: [
         "max-w-[915px]",
         "w-full",
-        "h-[400px]",
         "bg-white",
         "rounded-md",
         "fixed",
@@ -83,16 +82,28 @@ const fadeBlockParams = {
 
 const wrapperHeaderFormParams = {
     tagName: "div",
-    classList: ["max-w-[362px]", "border-b-2", "border-cyan-600"],
+    classList: [
+        "flex",
+        "justify-between",
+        "max-w-[362px]",
+        "border-b-2",
+        "border-cyan-600",
+        "py-1",
+        "mb-3",
+    ],
 };
 
 const titleInputParams = {
     tagName: "input",
     classList: ["max-w-[330px]", "w-full", "block", "outline-none"],
+    attr: {
+        placeholder: "Title",
+    },
 };
 
 const wrapperFakeCheckboxParams = {
     tagName: "label",
+    classList: ["cursor-pointer"],
 };
 
 const inputCheckboxParams = {
@@ -125,6 +136,22 @@ const spanCheckboxParams = {
         "before:translate-x-1/2",
     ],
 };
+const textareaParams = {
+    tagName: "textarea",
+    classList: [
+        "w-full",
+        "max-h-80",
+        "min-h-28",
+        "resize-y",
+        "outline-none",
+        "focus:shadow-md",
+        "shadow-black",
+    ],
+    attr: {
+        placeholder: "Your note",
+        id: "textareaModal",
+    },
+};
 
 const initialModal = () => {
     const fadeBlock = creator(fadeBlockParams);
@@ -147,6 +174,9 @@ const initialModal = () => {
 
     const spanCheckbox = creator(spanCheckboxParams);
     wrapperFakeCheckbox.append(spanCheckbox);
+
+    const textarea = creator(textareaParams);
+    form.append(textarea);
 };
 
 const creator = (elementParams) => {

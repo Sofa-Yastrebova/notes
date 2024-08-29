@@ -9067,7 +9067,7 @@ const fadeBlockParams = {
 };
 const wrapperHeaderFormParams = {
   tagName: "div",
-  classList: ["max-w-[362px]", "border-b-2", "border-cyan-600"]
+  classList: ["flex", "max-w-[362px]", "border-b-2", "border-cyan-600"]
 };
 const titleInputParams = {
   tagName: "input",
@@ -9079,13 +9079,13 @@ const wrapperFakeCheckboxParams = {
 const inputCheckboxParams = {
   tagName: "input",
   attr: {
-    "type": "checkbox"
+    type: "checkbox"
   },
-  classList: ["opacity-0", "input"]
+  classList: ["-z-1", "absolute", "opacity-0", "w-0", "h-0"]
 };
 const spanCheckboxParams = {
   tagName: "span",
-  classList: ["block", "w-6", "h-6", "favoriteButton", "before:content-['']", "before:block", "before:w-5", "before:h-5", "before:bg-cover", "before:bg-center", "before:bg-no-repeat"]
+  classList: ["block", "w-6", "h-6", "relative", "favoriteButton", "before:content-['']", "before:block", "before:w-5", "before:h-5", "before:bg-cover", "before:bg-center", "before:bg-no-repeat", "before:absolute", "before:bottom-1/2", "before:right-1/2", "before:translate-y-1/2", "before:translate-x-1/2"]
 };
 const initialModal = () => {
   const fadeBlock = creator(fadeBlockParams);
