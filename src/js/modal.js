@@ -4,20 +4,20 @@
 
 const btnAddNote = document.querySelector("#btnAddNote");
 
-// const buttonAddParams = {
-//     tagName: "button",
-//     classList: [
-//         "bg-cyan-600",
-//         "px-8",
-//         "py-1",
-//         "rounded-md",
-//         "text-white",
-//         "min-w-[110px]",
-//         "hover:opacity-75",
-//     ],
-//     id: "",
-//     text: "Add",
-// };
+const buttonAddParams = {
+    tagName: "button",
+    classList: [
+        "bg-cyan-600",
+        "px-8",
+        "py-1",
+        "rounded-md",
+        "text-white",
+        "min-w-[110px]",
+        "hover:opacity-75",
+    ],
+    id: "",
+    text: "Add",
+};
 
 // const buttonEditParams = {
 //     tagName: "button",
@@ -34,20 +34,20 @@ const btnAddNote = document.querySelector("#btnAddNote");
 //     text: "Edit",
 // };
 
-// const buttonCancelParams = {
-//     tagName: "button",
-//     classList: [
-//         "bg-[#CD103E]",
-//         "px-8",
-//         "py-1",
-//         "rounded-md",
-//         "text-white",
-//         "min-w-[110px]",
-//         "hover:opacity-75",
-//     ],
-//     id: "",
-//     text: "Cancel",
-// };
+const buttonCancelParams = {
+    tagName: "button",
+    classList: [
+        "bg-[#CD103E]",
+        "px-8",
+        "py-1",
+        "rounded-md",
+        "text-white",
+        "min-w-[110px]",
+        "hover:opacity-75",
+    ],
+    id: "",
+    text: "Cancel",
+};
 
 const formParams = {
     tagName: "form",
@@ -95,7 +95,7 @@ const wrapperHeaderFormParams = {
 
 const titleInputParams = {
     tagName: "input",
-    classList: ["max-w-[330px]", "w-full", "block", "outline-none"],
+    classList: ["max-w-[330px]", "w-full", "block", "outline-none", "p-1"],
     attr: {
         placeholder: "Title",
     },
@@ -146,11 +146,18 @@ const textareaParams = {
         "outline-none",
         "focus:shadow-md",
         "shadow-black",
+        "mb-2",
+        "p-1",
     ],
     attr: {
         placeholder: "Your note",
         id: "textareaModal",
     },
+};
+
+const wrapperActionParams = {
+    tagname: "div",
+    classList: ["flex", "justify-end", "gap-3"],
 };
 
 const initialModal = () => {
@@ -177,6 +184,15 @@ const initialModal = () => {
 
     const textarea = creator(textareaParams);
     form.append(textarea);
+
+    const wrapperAction = creator(wrapperActionParams);
+    form.append(wrapperAction);
+
+    const buttonAdd = creator(buttonAddParams);
+    wrapperAction.append(buttonAdd);
+
+    const buttonCancel = creator(buttonCancelParams);
+    wrapperAction.append(buttonCancel);
 };
 
 const creator = (elementParams) => {
