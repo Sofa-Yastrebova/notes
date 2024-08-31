@@ -1,9 +1,3 @@
-// 1.Показывает окно при нажатии на кнопку add note
-// 2.Выбрать версию окна
-// 3.Создать окно и отобразить на странице
-
-const btnAddNote = document.querySelector("#btnAddNote");
-
 const buttonAddParams = {
     tagName: "button",
     classList: [
@@ -19,20 +13,20 @@ const buttonAddParams = {
     text: "Add",
 };
 
-// const buttonEditParams = {
-//     tagName: "button",
-//     classList: [
-//         "bg-cyan-600",
-//         "px-8",
-//         "py-1",
-//         "rounded-md",
-//         "text-white",
-//         "min-w-[110px]",
-//         "hover:opacity-75",
-//     ],
-//     id: "",
-//     text: "Edit",
-// };
+const buttonEditParams = {
+    tagName: "button",
+    classList: [
+        "bg-cyan-600",
+        "px-8",
+        "py-1",
+        "rounded-md",
+        "text-white",
+        "min-w-[110px]",
+        "hover:opacity-75",
+    ],
+    id: "",
+    text: "Edit",
+};
 
 const buttonCancelParams = {
     tagName: "button",
@@ -136,6 +130,7 @@ const spanCheckboxParams = {
         "before:translate-x-1/2",
     ],
 };
+
 const textareaParams = {
     tagName: "textarea",
     classList: [
@@ -160,62 +155,17 @@ const wrapperActionParams = {
     classList: ["flex", "justify-end", "gap-3"],
 };
 
-const initialModal = () => {
-    const fadeBlock = creator(fadeBlockParams);
-    document.body.append(fadeBlock);
-
-    const form = creator(formParams);
-    document.body.append(form);
-
-    const wrapperHeaderForm = creator(wrapperHeaderFormParams);
-    form.append(wrapperHeaderForm);
-
-    const titleInput = creator(titleInputParams);
-    wrapperHeaderForm.append(titleInput);
-
-    const wrapperFakeCheckbox = creator(wrapperFakeCheckboxParams);
-    wrapperHeaderForm.append(wrapperFakeCheckbox);
-
-    const inputCheckbox = creator(inputCheckboxParams);
-    wrapperFakeCheckbox.append(inputCheckbox);
-
-    const spanCheckbox = creator(spanCheckboxParams);
-    wrapperFakeCheckbox.append(spanCheckbox);
-
-    const textarea = creator(textareaParams);
-    form.append(textarea);
-
-    const wrapperAction = creator(wrapperActionParams);
-    form.append(wrapperAction);
-
-    const buttonAdd = creator(buttonAddParams);
-    wrapperAction.append(buttonAdd);
-
-    const buttonCancel = creator(buttonCancelParams);
-    wrapperAction.append(buttonCancel);
+export {
+    buttonAddParams,
+    buttonCancelParams,
+    buttonEditParams,
+    formParams,
+    fadeBlockParams,
+    wrapperFakeCheckboxParams,
+    wrapperHeaderFormParams,
+    textareaParams,
+    titleInputParams,
+    inputCheckboxParams,
+    spanCheckboxParams,
+    wrapperActionParams,
 };
-
-const creator = (elementParams) => {
-    const element = document.createElement(elementParams.tagName);
-
-    if (elementParams.text) {
-        element.textContent = elementParams.text;
-    }
-
-    if (elementParams.id) {
-        element.id = elementParams.id;
-    }
-
-    if (elementParams.attr) {
-        for (const key in elementParams.attr) {
-            element.setAttribute(key, elementParams.attr[key]);
-        }
-    }
-    // пересмотреть условие
-    if (elementParams.classList) {
-        element.classList.add(...elementParams.classList);
-    }
-    return element;
-};
-
-btnAddNote.addEventListener("click", initialModal);
