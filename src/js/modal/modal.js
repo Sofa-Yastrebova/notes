@@ -11,7 +11,8 @@ import {
     spanCheckboxParams,
     wrapperActionParams,
 } from "./params-modal.js";
-import creator from "./utilities/creator.js";
+
+import { creator } from "../utilities/creator.js";
 
 const btnAddNote = document.querySelector("#btnAddNote");
 
