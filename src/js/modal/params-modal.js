@@ -9,7 +9,6 @@ const buttonAddParams = {
         "min-w-[110px]",
         "hover:opacity-75",
     ],
-    id: "",
     text: "Add",
 };
 
@@ -24,7 +23,6 @@ const buttonEditParams = {
         "min-w-[110px]",
         "hover:opacity-75",
     ],
-    id: "",
     text: "Edit",
 };
 
@@ -39,7 +37,6 @@ const buttonCancelParams = {
         "min-w-[110px]",
         "hover:opacity-75",
     ],
-    id: "",
     text: "Cancel",
 };
 

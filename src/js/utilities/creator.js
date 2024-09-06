@@ -1,24 +1,32 @@
 const creator = (elementParams) => {
     const element = document.createElement(elementParams.tagName);
+    const text = elementParams.text;
+    const attr = elementParams.attr;
+    const classList = elementParams.classList;
 
-    if (elementParams.text) {
-        element.textContent = elementParams.text;
+    addTextContent(element, text);
+    addAttr(element, attr);
+    addClassList(element, classList);
+
+    return element;
+};
+
+const addTextContent = (currentElement, text) => {
+    if (currentElement && text) {
+        currentElement.textContent = text;
     }
-
-    if (elementParams.id) {
-        element.id = elementParams.id;
+};
+const addClassList = (currentElement, classList) => {
+    if (currentElement && classList) {
+        currentElement.classList.add(...classList);
     }
-
-    if (elementParams.attr) {
-        for (const key in elementParams.attr) {
-            element.setAttribute(key, elementParams.attr[key]);
+};
+const addAttr = (currentElement, attr) => {
+    if (currentElement && attr) {
+        for (const key in attr) {
+            currentElement.setAttribute(key, attr[key]);
         }
     }
-
-    if (elementParams.classList) {
-        element.classList.add(...elementParams.classList);
-    }
-    return element;
 };
 
 export { creator };

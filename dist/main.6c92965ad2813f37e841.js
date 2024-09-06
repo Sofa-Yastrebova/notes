@@ -9009,19 +9009,16 @@ buttonDarkMode.addEventListener("click", switchDarkMode);
 const buttonAddParams = {
   tagName: "button",
   classList: ["bg-cyan-600", "px-8", "py-1", "rounded-md", "text-white", "min-w-[110px]", "hover:opacity-75"],
-  id: "",
   text: "Add"
 };
 const buttonEditParams = {
   tagName: "button",
   classList: ["bg-cyan-600", "px-8", "py-1", "rounded-md", "text-white", "min-w-[110px]", "hover:opacity-75"],
-  id: "",
   text: "Edit"
 };
 const buttonCancelParams = {
   tagName: "button",
   classList: ["bg-[#CD103E]", "px-8", "py-1", "rounded-md", "text-white", "min-w-[110px]", "hover:opacity-75"],
-  id: "",
   text: "Cancel"
 };
 const formParams = {
@@ -9074,22 +9071,43 @@ const wrapperActionParams = {
 ;// CONCATENATED MODULE: ./src/js/utilities/creator.js
 const creator = elementParams => {
   const element = document.createElement(elementParams.tagName);
-  if (elementParams.text) {
-    element.textContent = elementParams.text;
-  }
-  if (elementParams.id) {
-    element.id = elementParams.id;
-  }
-  if (elementParams.attr) {
-    for (const key in elementParams.attr) {
-      element.setAttribute(key, elementParams.attr[key]);
-    }
-  }
-  if (elementParams.classList) {
-    element.classList.add(...elementParams.classList);
-  }
+  addTextContent(element, elementParams.text);
+  addAttr(element, elementParams.attr);
+  addClassList(element, elementParams.classList);
+
+  // if (elementParams.attr) {
+  //     for (const key in elementParams.attr) {
+  //         element.setAttribute(key, elementParams.attr[key]);
+  //     }
+  // }
+
+  // if (elementParams.classList) {
+  //     element.classList.add(...elementParams.classList);
+  // }
   return element;
 };
+const addTextContent = (currentElement, text) => {
+  if (text) {
+    currentElement.textContent = text;
+  }
+};
+const addClassList = (currentElement, classListr) => {
+  if (classList) {
+    currentElement.classList = classList;
+  }
+};
+const addAttr = (currentElement, attr) => {
+  if (attr) {
+    currentElement.setAttribute = attr;
+  }
+};
+
+// const addClassList = (currentElement, classList) => {
+//     if (currentElement.classList, classList) {
+//         element.classList.add(...elementParams.classList);
+//     }
+// }
+
 
 ;// CONCATENATED MODULE: ./src/js/modal/modal.js
 
