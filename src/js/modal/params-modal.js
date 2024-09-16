@@ -55,6 +55,9 @@ const formParams = {
         "py-[30px]",
         "px-[36px]",
     ],
+    attr: {
+        id: "form",
+    },
 };
 
 const fadeBlockParams = {
@@ -89,6 +92,8 @@ const titleInputParams = {
     classList: ["max-w-[330px]", "w-full", "block", "outline-none", "p-1"],
     attr: {
         placeholder: "Title",
+        id: "inputTitle",
+        name: "input-title",
     },
 };
 

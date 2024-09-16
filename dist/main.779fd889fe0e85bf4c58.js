@@ -9023,7 +9023,10 @@ const buttonCancelParams = {
 };
 const formParams = {
   tagName: "form",
-  classList: ["max-w-[915px]", "w-full", "bg-white", "rounded-md", "fixed", "bottom-1/2", "right-1/2", "translate-y-1/2", "translate-x-1/2", "py-[30px]", "px-[36px]"]
+  classList: ["max-w-[915px]", "w-full", "bg-white", "rounded-md", "fixed", "bottom-1/2", "right-1/2", "translate-y-1/2", "translate-x-1/2", "py-[30px]", "px-[36px]"],
+  attr: {
+    id: "form"
+  }
 };
 const fadeBlockParams = {
   tagName: "div",
@@ -9037,7 +9040,9 @@ const titleInputParams = {
   tagName: "input",
   classList: ["max-w-[330px]", "w-full", "block", "outline-none", "p-1"],
   attr: {
-    placeholder: "Title"
+    placeholder: "Title",
+    id: "inputTitle",
+    name: "input-title"
   }
 };
 const wrapperFakeCheckboxParams = {
@@ -9071,43 +9076,31 @@ const wrapperActionParams = {
 ;// CONCATENATED MODULE: ./src/js/utilities/creator.js
 const creator = elementParams => {
   const element = document.createElement(elementParams.tagName);
-  addTextContent(element, elementParams.text);
-  addAttr(element, elementParams.attr);
-  addClassList(element, elementParams.classList);
-
-  // if (elementParams.attr) {
-  //     for (const key in elementParams.attr) {
-  //         element.setAttribute(key, elementParams.attr[key]);
-  //     }
-  // }
-
-  // if (elementParams.classList) {
-  //     element.classList.add(...elementParams.classList);
-  // }
+  const text = elementParams.text;
+  const attr = elementParams.attr;
+  const classList = elementParams.classList;
+  addTextContent(element, text);
+  addAttr(element, attr);
+  addClassList(element, classList);
   return element;
 };
 const addTextContent = (currentElement, text) => {
-  if (text) {
+  if (currentElement && text) {
     currentElement.textContent = text;
   }
 };
-const addClassList = (currentElement, classListr) => {
-  if (classList) {
-    currentElement.classList = classList;
+const addClassList = (currentElement, classList) => {
+  if (currentElement && classList) {
+    currentElement.classList.add(...classList);
   }
 };
 const addAttr = (currentElement, attr) => {
-  if (attr) {
-    currentElement.setAttribute = attr;
+  if (currentElement && attr) {
+    for (const key in attr) {
+      currentElement.setAttribute(key, attr[key]);
+    }
   }
 };
-
-// const addClassList = (currentElement, classList) => {
-//     if (currentElement.classList, classList) {
-//         element.classList.add(...elementParams.classList);
-//     }
-// }
-
 
 ;// CONCATENATED MODULE: ./src/js/modal/modal.js
 
@@ -9136,8 +9129,25 @@ const initialModal = () => {
   wrapperAction.append(buttonAdd);
   const buttonCancel = creator(buttonCancelParams);
   wrapperAction.append(buttonCancel);
+  const inputTitle = document.querySelector("#inputTitle");
+  if (inputTitle) {
+    inputTitle.focus();
+  }
+  form.addEventListener("submit", e => {
+    e.preventDefault();
+    const formData = new FormData(form);
+    const dataString = JSON.stringify(formData);
+    // const getInputTitle =  formData.get("input-title");
+    // const getJsonInputTitle = JSON.stringify(getInputTitle)
+    // const getJson = JSON.parse(getJsonInputTitle);
+    localStorage.setItem("notes", dataString);
+  });
 };
 btnAddNote.addEventListener("click", initialModal);
+
+// 1.написать функцию, которая будет собирать данные из формы 
+// 2. написать фукнкцию, которая будет сохранять данные в локалку
+// 3.удалять рендер окна/модалки
 ;// CONCATENATED MODULE: ./src/index-entry.js
 
 
