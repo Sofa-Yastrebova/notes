@@ -9135,19 +9135,33 @@ const initialModal = () => {
   }
   form.addEventListener("submit", e => {
     e.preventDefault();
-    const formData = new FormData(form);
-    const dataString = JSON.stringify(formData);
-    // const getInputTitle =  formData.get("input-title");
-    // const getJsonInputTitle = JSON.stringify(getInputTitle)
-    // const getJson = JSON.parse(getJsonInputTitle);
+    const dataString = JSON.stringify(handlerData(form));
     localStorage.setItem("notes", dataString);
+
+    // const dataFromLocal = localStorage.getItem("notes");
+    // const parseData = JSON.parse(dataFromLocal);
+
+    removeRenderModal(form, fadeBlock);
   });
+};
+const handlerData = form => {
+  const formData = new FormData(form);
+  const newNote = {
+    title: formData.get("input-title")
+  };
+  return newNote;
+};
+const removeRenderModal = (form, fadeBlock) => {
+  form.remove();
+  fadeBlock.remove();
 };
 btnAddNote.addEventListener("click", initialModal);
 
-// 1.написать функцию, которая будет собирать данные из формы 
-// 2. написать фукнкцию, которая будет сохранять данные в локалку
-// 3.удалять рендер окна/модалки
+// 1.удалять рендер окна/модалки
+// 2.декомпозировать функцию по отправке формы
+//  2.1. Функция для удаления рендера 
+//   2.2. Сбор данных и их преобразование
+//    2.3. Работа с локальным хранилищем
 ;// CONCATENATED MODULE: ./src/index-entry.js
 
 

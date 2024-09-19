@@ -51,32 +51,39 @@ const initialModal = () => {
     wrapperAction.append(buttonCancel);
 
     const inputTitle = document.querySelector("#inputTitle");
+
     if (inputTitle) {
         inputTitle.focus();
     }
 
     form.addEventListener("submit", (e) => {
         e.preventDefault();
-        console.log(e);
 
-        const formData = new FormData(form);
-
-        const newNote = {
-            title: formData.get("input-title"),
-        };
-
-        const dataString = JSON.stringify(newNote);
+        const dataString = JSON.stringify(handlerData(form));
         localStorage.setItem("notes", dataString);
 
-        // const dataFromLocal = localStorage.getItem("notes");
-        // const parseData = JSON.parse(dataFromLocal);
-
-        form.remove();
-        fadeBlock.remove();
+        removeRenderModal(form, fadeBlock);
     });
+};
+
+const handlerData = (form) => {
+    const formData = new FormData(form);
+
+    const newNote = {
+        title: formData.get("input-title"),
+    };
+
+    return newNote;
+};
+
+const removeRenderModal = (form, fadeBlock) => {
+    form.remove();
+    fadeBlock.remove();
 };
 
 btnAddNote.addEventListener("click", initialModal);
 
-// 1.удалять рендер окна/модалки
 // 2.декомпозировать функцию по отправке формы
+//  2.1. Функция для удаления рендера
+//   2.2. Сбор данных и их преобразование
+//    2.3. Работа с локальным хранилищем
