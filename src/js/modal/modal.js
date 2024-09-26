@@ -13,6 +13,7 @@ import {
 } from "./params-modal.js";
 
 import { creator } from "../utilities/creator.js";
+import { setDataToStorage } from "../utilities/data-handler.js";
 
 const btnAddNote = document.querySelector("#btnAddNote");
 
@@ -63,27 +64,9 @@ const initialModal = () => {
     });
 };
 
-const handlerData = (form) => {
-    const formData = new FormData(form);
-
-    const newNote = {
-        title: formData.get("input-title"),
-    };
-
-    return newNote;
-};
-
-const setDataToStorage = (form) => {
-    const dataString = JSON.stringify(handlerData(form));
-    localStorage.setItem("notes", dataString);
-};
-
 const removeRenderModal = (formElement, fadeBlock) => {
     formElement.remove();
     fadeBlock.remove();
 };
 
 btnAddNote.addEventListener("click", initialModal);
-
-// 2.декомпозировать функцию по отправке формы
-//    2.3. Работа с локальным хранилищем

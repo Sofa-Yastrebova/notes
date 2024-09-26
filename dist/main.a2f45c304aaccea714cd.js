@@ -9102,7 +9102,29 @@ const addAttr = (currentElement, attr) => {
   }
 };
 
+;// CONCATENATED MODULE: ./src/js/utilities/data-handler.js
+// const notes = {
+//     regulary: [],
+//     favorites: [],
+// }
+
+// 1. Создать функцию для инициализации данных в локальном хранилище
+// 2. Дополнить объект заметки нужными значениями(text, id, status)
+
+const InitialData = () => {};
+const setDataToStorage = form => {
+  const dataString = JSON.stringify(handlerData(form));
+  localStorage.setItem("notes", dataString);
+};
+const handlerData = form => {
+  const formData = new FormData(form);
+  const newNote = {
+    title: formData.get("input-title")
+  };
+  return newNote;
+};
 ;// CONCATENATED MODULE: ./src/js/modal/modal.js
+
 
 
 const btnAddNote = document.querySelector("#btnAddNote");
@@ -9135,33 +9157,15 @@ const initialModal = () => {
   }
   form.addEventListener("submit", e => {
     e.preventDefault();
-    const dataString = JSON.stringify(handlerData(form));
-    localStorage.setItem("notes", dataString);
-
-    // const dataFromLocal = localStorage.getItem("notes");
-    // const parseData = JSON.parse(dataFromLocal);
-
+    setDataToStorage(form);
     removeRenderModal(form, fadeBlock);
   });
 };
-const handlerData = form => {
-  const formData = new FormData(form);
-  const newNote = {
-    title: formData.get("input-title")
-  };
-  return newNote;
-};
-const removeRenderModal = (form, fadeBlock) => {
-  form.remove();
+const removeRenderModal = (formElement, fadeBlock) => {
+  formElement.remove();
   fadeBlock.remove();
 };
 btnAddNote.addEventListener("click", initialModal);
-
-// 1.удалять рендер окна/модалки
-// 2.декомпозировать функцию по отправке формы
-//  2.1. Функция для удаления рендера 
-//   2.2. Сбор данных и их преобразование
-//    2.3. Работа с локальным хранилищем
 ;// CONCATENATED MODULE: ./src/index-entry.js
 
 
