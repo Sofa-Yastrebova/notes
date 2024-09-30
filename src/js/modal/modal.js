@@ -13,7 +13,7 @@ import {
 } from "./params-modal.js";
 
 import { creator } from "../utilities/creator.js";
-// import { setDataToStorage } from "../utilities/data-handler.js";
+import { handlerData } from "../utilities/data-handler.js";
 
 const btnAddNote = document.querySelector("#btnAddNote");
 
@@ -59,7 +59,7 @@ const initialModal = () => {
 
     form.addEventListener("submit", (e) => {
         e.preventDefault();
-        // setDataToStorage(form);
+        handlerData(form);
         removeRenderModal(form, fadeBlock);
     });
 };

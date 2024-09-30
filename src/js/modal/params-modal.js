@@ -106,6 +106,7 @@ const inputCheckboxParams = {
     tagName: "input",
     attr: {
         type: "checkbox",
+        name: "checkBox",
     },
     classList: ["-z-1", "absolute", "opacity-0", "w-0", "h-0"],
 };

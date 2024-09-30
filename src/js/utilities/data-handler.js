@@ -1,4 +1,3 @@
-//1. Данные из initialDataсделать доступными для всех
 // 2. Дополнить объект заметки нужными значениями(text, id, status)
 
 const setDataToStorage = (notes) => {
@@ -30,11 +29,13 @@ const InitialData = () => {
 const notes = InitialData();
 console.log(notes);
 
-// const handlerData = (form) => {
-//     const formData = new FormData(form);
-//     const newNote = {
-//         title: formData.get("input-title"),
-//     };
+export const handlerData = (form) => {
+    const formData = new FormData(form);
+    const newNote = {
+        title: formData.get("input-title"),
+        favorite: formData.get("checkBox"),
+    };
+    console.log(newNote.favorite);
 
-//     return newNote;
-// };
+    return newNote;
+};
