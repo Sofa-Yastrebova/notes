@@ -1,6 +1,5 @@
-// 1. Создать функцию для инициализации данных в локальном хранилище
+//1. Данные из initialDataсделать доступными для всех
 // 2. Дополнить объект заметки нужными значениями(text, id, status)
-// const notes =
 
 const setDataToStorage = (notes) => {
     const dataString = JSON.stringify(notes);
@@ -17,17 +16,19 @@ const InitialData = () => {
     const isDataFromStorage = getDataFromStorage();
 
     if (isDataFromStorage) {
-        console.log(isDataFromStorage);
+        return isDataFromStorage;
     } else {
         const notes = {
             regulary: [],
             favorites: [],
         };
         setDataToStorage(notes);
+        return notes;
     }
 };
 
-InitialData();
+const notes = InitialData();
+console.log(notes);
 
 // const handlerData = (form) => {
 //     const formData = new FormData(form);
