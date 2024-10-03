@@ -150,6 +150,7 @@ const textareaParams = {
     attr: {
         placeholder: "Your note",
         id: "textareaModal",
+        name: "message",
     },
 };
 

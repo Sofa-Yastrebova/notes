@@ -27,15 +27,22 @@ const InitialData = () => {
 };
 
 const notes = InitialData();
-console.log(notes);
+
+const setDataToArray = (newNote) => {
+    if (newNote.favorite) {
+        notes.favorites.push(newNote);
+    } else {
+        notes.regulary.push(newNote);
+    }
+};
 
 export const handlerData = (form) => {
     const formData = new FormData(form);
     const newNote = {
         title: formData.get("input-title"),
+        text: formData.get("message"),
         favorite: formData.get("checkBox"),
     };
-    console.log(newNote.favorite);
 
-    return newNote;
+    setDataToArray(newNote);
 };
