@@ -38,11 +38,21 @@ const setDataToArray = (newNote) => {
 
 export const handlerData = (form) => {
     const formData = new FormData(form);
+    const currentDate = new Date();
+
     const newNote = {
         title: formData.get("input-title"),
         text: formData.get("message"),
         favorite: formData.get("checkBox"),
+        date: currentDate.toLocaleString("ru-RU", {
+            day: "numeric",
+            month: "numeric",
+            year: "numeric",
+            hour: "2-digit",
+            minute: "2-digit",
+        }),
     };
 
     setDataToArray(newNote);
+    setDataToStorage(notes);
 };

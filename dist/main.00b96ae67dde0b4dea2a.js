@@ -9052,7 +9052,8 @@ const wrapperFakeCheckboxParams = {
 const inputCheckboxParams = {
   tagName: "input",
   attr: {
-    type: "checkbox"
+    type: "checkbox",
+    name: "checkBox"
   },
   classList: ["-z-1", "absolute", "opacity-0", "w-0", "h-0"]
 };
@@ -9065,7 +9066,8 @@ const textareaParams = {
   classList: ["w-full", "max-h-80", "min-h-28", "resize-y", "outline-none", "focus:shadow-md", "shadow-black", "mb-2", "p-1"],
   attr: {
     placeholder: "Your note",
-    id: "textareaModal"
+    id: "textareaModal",
+    name: "message"
   }
 };
 const wrapperActionParams = {
@@ -9103,25 +9105,56 @@ const addAttr = (currentElement, attr) => {
 };
 
 ;// CONCATENATED MODULE: ./src/js/utilities/data-handler.js
-// const notes = {
-//     regulary: [],
-//     favorites: [],
-// }
-
-// 1. Создать функцию для инициализации данных в локальном хранилище
 // 2. Дополнить объект заметки нужными значениями(text, id, status)
 
-const InitialData = () => {};
-const setDataToStorage = form => {
-  const dataString = JSON.stringify(handlerData(form));
+const setDataToStorage = notes => {
+  const dataString = JSON.stringify(notes);
   localStorage.setItem("notes", dataString);
+};
+const getDataFromStorage = () => {
+  const dataFromLocal = localStorage.getItem("notes");
+  const dataParse = JSON.parse(dataFromLocal);
+  return dataParse;
+};
+const InitialData = () => {
+  const isDataFromStorage = getDataFromStorage();
+  if (isDataFromStorage) {
+    return isDataFromStorage;
+  } else {
+    const notes = {
+      regulary: [],
+      favorites: []
+    };
+    setDataToStorage(notes);
+    return notes;
+  }
+};
+const notes = InitialData();
+const setDataToArray = newNote => {
+  if (newNote.favorite) {
+    notes.favorites.push(newNote);
+  } else {
+    notes.regulary.push(newNote);
+  }
 };
 const handlerData = form => {
   const formData = new FormData(form);
+  const currentDate = new Date();
   const newNote = {
-    title: formData.get("input-title")
+    title: formData.get("input-title"),
+    text: formData.get("message"),
+    favorite: formData.get("checkBox"),
+    date: currentDate.toLocaleString("ru-RUS", {
+      timeZone: "Russia/Moscow",
+      day: "numeric",
+      month: "long",
+      year: "numeric",
+      hour: "2-digit",
+      minute: "2-digit"
+    })
   };
-  return newNote;
+  setDataToArray(newNote);
+  setDataToStorage(notes);
 };
 ;// CONCATENATED MODULE: ./src/js/modal/modal.js
 
@@ -9157,7 +9190,7 @@ const initialModal = () => {
   }
   form.addEventListener("submit", e => {
     e.preventDefault();
-    setDataToStorage(form);
+    handlerData(form);
     removeRenderModal(form, fadeBlock);
   });
 };
@@ -9167,6 +9200,7 @@ const removeRenderModal = (formElement, fadeBlock) => {
 };
 btnAddNote.addEventListener("click", initialModal);
 ;// CONCATENATED MODULE: ./src/index-entry.js
+
 
 
 
