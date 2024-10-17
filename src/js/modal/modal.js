@@ -13,7 +13,8 @@ import {
 } from "./params-modal.js";
 
 import { creator } from "../utilities/creator.js";
-import { handlerData } from "../utilities/data-handler.js";
+import { handlerData, getDataFromStorage } from "../utilities/data-handler.js";
+import render from "../utilities/render.js";
 
 const btnAddNote = document.querySelector("#btnAddNote");
 
@@ -61,6 +62,7 @@ const initialModal = () => {
         e.preventDefault();
         handlerData(form);
         removeRenderModal(form, fadeBlock);
+        render(getDataFromStorage());
     });
 };
 

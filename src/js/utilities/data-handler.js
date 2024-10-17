@@ -36,7 +36,7 @@ const setDataToArray = (newNote) => {
     }
 };
 
-export const handlerData = (form) => {
+const handlerData = (form) => {
     const formData = new FormData(form);
     const currentDate = new Date();
 
@@ -56,3 +56,5 @@ export const handlerData = (form) => {
     setDataToArray(newNote);
     setDataToStorage(notes);
 };
+
+export { handlerData, getDataFromStorage };

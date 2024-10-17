@@ -9144,10 +9144,9 @@ const handlerData = form => {
     title: formData.get("input-title"),
     text: formData.get("message"),
     favorite: formData.get("checkBox"),
-    date: currentDate.toLocaleString("ru-RUS", {
-      timeZone: "Russia/Moscow",
+    date: currentDate.toLocaleString("ru-RU", {
       day: "numeric",
-      month: "long",
+      month: "numeric",
       year: "numeric",
       hour: "2-digit",
       minute: "2-digit"
@@ -9156,7 +9155,70 @@ const handlerData = form => {
   setDataToArray(newNote);
   setDataToStorage(notes);
 };
+
+;// CONCATENATED MODULE: ./src/js/utilities/params-notes.js
+const listNotesParams = {
+  tagName: "ul",
+  classList: ["mx-auto", "max-w-[916px]"],
+  attr: {
+    id: "listNotes"
+  }
+};
+const liParams = {
+  tagName: "li"
+};
+const noteParams = {
+  tagName: "article",
+  classList: [],
+  attr: {}
+};
+const topPartNoteParams = {
+  tagName: "div",
+  classList: [],
+  attr: {}
+};
+const wrapperTitleAndDateParams = {
+  tagName: "div",
+  classList: [],
+  attr: {}
+};
+const titleNoteParams = {
+  tagName: "span"
+};
+const dateParams = {
+  tagName: "span"
+};
+
+;// CONCATENATED MODULE: ./src/js/utilities/render.js
+
+
+const render = data => {
+  let listNotes = document.querySelector("#listNotes");
+  if (!listNotes) {
+    listNotes = creator(listNotesParams);
+    const main = document.querySelector("#main");
+    main.append(listNotes);
+  }
+  const favourite = data.favorites;
+  favourite.forEach(note => {
+    const listItemElement = creator(liParams);
+    const notesElement = creator(noteParams);
+    const topPartNote = creator(topPartNoteParams);
+    const wrapperTitleAndDate = creator(wrapperTitleAndDateParams);
+    const titleNote = creator(titleNoteParams);
+    const date = creator(dateParams);
+    listItemElement.append(notesElement);
+    notesElement.append(topPartNote);
+    topPartNote.append(wrapperTitleAndDate);
+    wrapperTitleAndDate.append(titleNote, date);
+  });
+};
+/* harmony default export */ const utilities_render = (render);
+
+//1.Перебрать данные вмассивах
+//2.на каждом круге цикла создавать заметку и рендерить её
 ;// CONCATENATED MODULE: ./src/js/modal/modal.js
+
 
 
 
@@ -9192,6 +9254,7 @@ const initialModal = () => {
     e.preventDefault();
     handlerData(form);
     removeRenderModal(form, fadeBlock);
+    utilities_render(getDataFromStorage());
   });
 };
 const removeRenderModal = (formElement, fadeBlock) => {
@@ -9200,7 +9263,6 @@ const removeRenderModal = (formElement, fadeBlock) => {
 };
 btnAddNote.addEventListener("click", initialModal);
 ;// CONCATENATED MODULE: ./src/index-entry.js
-
 
 
 
