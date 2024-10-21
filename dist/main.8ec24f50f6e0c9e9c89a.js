@@ -9159,17 +9159,18 @@ const handlerData = form => {
 ;// CONCATENATED MODULE: ./src/js/utilities/params-notes.js
 const listNotesParams = {
   tagName: "ul",
-  classList: ["mx-auto", "max-w-[916px]"],
+  classList: ["mx-auto", "max-w-[916px]", "flex", "flex-col", "gap-y-4"],
   attr: {
     id: "listNotes"
   }
 };
 const liParams = {
-  tagName: "li"
+  tagName: "li",
+  classList: []
 };
 const noteParams = {
   tagName: "article",
-  classList: [],
+  classList: ["border-2", "border-cyan-600", "px-[7px]", "py-[4px]", "rounded-lg"],
   attr: {}
 };
 const topPartNoteParams = {
@@ -9179,15 +9180,42 @@ const topPartNoteParams = {
 };
 const wrapperTitleAndDateParams = {
   tagName: "div",
-  classList: [],
+  classList: ["flex", "gap-x-4", "items-center"],
   attr: {}
 };
 const titleNoteParams = {
-  tagName: "span"
+  tagName: "span",
+  classList: ["text-xl", "text-[#10798D]"]
 };
 const dateParams = {
-  tagName: "span"
+  tagName: "span",
+  classList: ["text-sm", "text-[#ACACAC]"]
 };
+const textParams = {
+  tagName: "p",
+  classList: ["text-base", "text-[#393E3F]", "truncate"]
+};
+const wrapperButtonControlParams = {
+  tagName: "div",
+  classList: ["flex", "gap-x[6px]"]
+};
+const favouriteIconParams = {
+  tagName: "button",
+  classList: ["bg-[url('./img/starBlack.svg')]", "bg-cover", "bg-no-repeat", "w-6", "h-6"]
+};
+const editIconParams = {
+  tagName: "button",
+  classList: ["bg-[url('./img/edit-btn.svg')]", "bg-cover", "bg-no-repeat", "w-6", "h-6"]
+};
+// const delitIconParams = {
+//     tagName: "button",
+//     classList:[
+//         "bg-[url('/src/img/trash-btn.svg')]",
+//         "bg-cover",
+//         "bg-no-repeat",
+//     ]
+// };
+
 
 ;// CONCATENATED MODULE: ./src/js/utilities/render.js
 
@@ -9205,11 +9233,25 @@ const render = data => {
     const notesElement = creator(noteParams);
     const topPartNote = creator(topPartNoteParams);
     const wrapperTitleAndDate = creator(wrapperTitleAndDateParams);
+    const wrapperButtonControl = creator(wrapperButtonControlParams);
     const titleNote = creator(titleNoteParams);
     const date = creator(dateParams);
+    const textNote = creator(textParams);
+    const favouriteIcon = creator(favouriteIconParams);
+    const editIcon = creator(editIconParams);
+    // const delitIcon = creator(delitIconParams);
+
+    titleNote.innerText = note.title;
+    textNote.innerText = note.text;
+    date.innerText = `Created ${note.date.slice(0, 10)} at ${note.date.slice(12)}`;
+    listNotes.append(listItemElement);
     listItemElement.append(notesElement);
     notesElement.append(topPartNote);
+    notesElement.append(textNote);
     topPartNote.append(wrapperTitleAndDate);
+    wrapperButtonControl.append(favouriteIcon);
+    wrapperButtonControl.append(editIcon);
+    topPartNote.append(wrapperButtonControl);
     wrapperTitleAndDate.append(titleNote, date);
   });
 };

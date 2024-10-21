@@ -1,12 +1,16 @@
 import { creator } from "./creator.js";
 import {
     dateParams,
+    delitIconParams,
+    editIconParams,
+    favouriteIconParams,
     liParams,
     listNotesParams,
     noteParams,
     textParams,
     titleNoteParams,
     topPartNoteParams,
+    wrapperButtonControlParams,
     wrapperTitleAndDateParams,
 } from "./params-notes.js";
 
@@ -27,9 +31,13 @@ const render = (data) => {
         const notesElement = creator(noteParams);
         const topPartNote = creator(topPartNoteParams);
         const wrapperTitleAndDate = creator(wrapperTitleAndDateParams);
+        const wrapperButtonControl = creator(wrapperButtonControlParams);
         const titleNote = creator(titleNoteParams);
         const date = creator(dateParams);
         const textNote = creator(textParams);
+        const favouriteIcon = creator(favouriteIconParams);
+        const editIcon = creator(editIconParams);
+        const delitIcon = creator(delitIconParams);
 
         titleNote.innerText = note.title;
         textNote.innerText = note.text;
@@ -39,6 +47,10 @@ const render = (data) => {
         notesElement.append(topPartNote);
         notesElement.append(textNote);
         topPartNote.append(wrapperTitleAndDate);
+        wrapperButtonControl.append(favouriteIcon);
+        wrapperButtonControl.append(editIcon);
+        wrapperButtonControl.append(delitIcon);
+        topPartNote.append(wrapperButtonControl);
         wrapperTitleAndDate.append(titleNote, date);
     });
 };
