@@ -14,20 +14,9 @@ import {
     wrapperTitleAndDateParams,
 } from "./params-notes.js";
 
-const render = (data) => {
-    let listNotes = document.querySelector("#listNotes");
-
-    if (!listNotes) {
-        listNotes = creator(listNotesParams);
-        const main = document.querySelector("#main");
-
-        main.append(listNotes);
-    }
-
-    const favourite = data.favorites;
-    favourite.forEach((note) => {
+const creatorNote = (arrayNotes) => {
+    const listElementsNotes = arrayNotes.map((note) => {
         const listItemElement = creator(liParams);
-
         const notesElement = creator(noteParams);
         const topPartNote = creator(topPartNoteParams);
         const wrapperTitleAndDate = creator(wrapperTitleAndDateParams);
@@ -42,7 +31,6 @@ const render = (data) => {
         titleNote.innerText = note.title;
         textNote.innerText = note.text;
         date.innerText = `Created ${note.date.slice(0, 10)} at ${note.date.slice(12)}`;
-        listNotes.append(listItemElement);
         listItemElement.append(notesElement);
         notesElement.append(topPartNote);
         notesElement.append(textNote);
@@ -52,10 +40,34 @@ const render = (data) => {
         wrapperButtonControl.append(delitIcon);
         topPartNote.append(wrapperButtonControl);
         wrapperTitleAndDate.append(titleNote, date);
+
+        return listItemElement;
+    });
+    return listElementsNotes;
+};
+
+const render = (data) => {
+    let listNotes = document.querySelector("#listNotes");
+
+    if (!listNotes) {
+        listNotes = creator(listNotesParams);
+        const main = document.querySelector("#main");
+
+        main.append(listNotes);
+    }
+
+    const notesElementFavorites = creatorNote(data.favorites);
+    const notesElementRegulary = creatorNote(data.regulary);
+
+    notesElementFavorites.forEach((element) => {
+        listNotes.append(element);
+    });
+
+    notesElementRegulary.forEach((element) => {
+        listNotes.append(element);
     });
 };
 
 export default render;
-
-//1.Перебрать данные вмассивах
-//2.на каждом круге цикла создавать заметку и рендерить её
+// 3.Отображать сначала избранные, а потом обычные
+//  3.1 использовать фрагмент

@@ -9175,7 +9175,7 @@ const noteParams = {
 };
 const topPartNoteParams = {
   tagName: "div",
-  classList: [],
+  classList: ["flex", "justify-between", "items-center"],
   attr: {}
 };
 const wrapperTitleAndDateParams = {
@@ -9197,7 +9197,7 @@ const textParams = {
 };
 const wrapperButtonControlParams = {
   tagName: "div",
-  classList: ["flex", "gap-x[6px]"]
+  classList: ["flex", "gap-x-1.5"]
 };
 const favouriteIconParams = {
   tagName: "button",
@@ -9207,28 +9207,16 @@ const editIconParams = {
   tagName: "button",
   classList: ["bg-[url('./img/edit-btn.svg')]", "bg-cover", "bg-no-repeat", "w-6", "h-6"]
 };
-// const delitIconParams = {
-//     tagName: "button",
-//     classList:[
-//         "bg-[url('/src/img/trash-btn.svg')]",
-//         "bg-cover",
-//         "bg-no-repeat",
-//     ]
-// };
-
+const delitIconParams = {
+  tagName: "button",
+  classList: ["bg-[url('./img/trash-btn.svg')]", "bg-cover", "bg-no-repeat", "w-6", "h-6"]
+};
 
 ;// CONCATENATED MODULE: ./src/js/utilities/render.js
 
 
-const render = data => {
-  let listNotes = document.querySelector("#listNotes");
-  if (!listNotes) {
-    listNotes = creator(listNotesParams);
-    const main = document.querySelector("#main");
-    main.append(listNotes);
-  }
-  const favourite = data.favorites;
-  favourite.forEach(note => {
+const creatorNote = arayNotes => {
+  arayNotes.forEach(note => {
     const listItemElement = creator(liParams);
     const notesElement = creator(noteParams);
     const topPartNote = creator(topPartNoteParams);
@@ -9239,26 +9227,38 @@ const render = data => {
     const textNote = creator(textParams);
     const favouriteIcon = creator(favouriteIconParams);
     const editIcon = creator(editIconParams);
-    // const delitIcon = creator(delitIconParams);
-
+    const delitIcon = creator(delitIconParams);
     titleNote.innerText = note.title;
     textNote.innerText = note.text;
     date.innerText = `Created ${note.date.slice(0, 10)} at ${note.date.slice(12)}`;
-    listNotes.append(listItemElement);
     listItemElement.append(notesElement);
     notesElement.append(topPartNote);
     notesElement.append(textNote);
     topPartNote.append(wrapperTitleAndDate);
     wrapperButtonControl.append(favouriteIcon);
     wrapperButtonControl.append(editIcon);
+    wrapperButtonControl.append(delitIcon);
     topPartNote.append(wrapperButtonControl);
     wrapperTitleAndDate.append(titleNote, date);
+    return listItemElement;
   });
 };
+const render = data => {
+  let listNotes = document.querySelector("#listNotes");
+  if (!listNotes) {
+    listNotes = creator(listNotesParams);
+    const main = document.querySelector("#main");
+    main.append(listNotes);
+  }
+  const noteElement = creatorNote(data.favorites);
+  listNotes.append(noteElement);
+};
 /* harmony default export */ const utilities_render = (render);
-
-//1.Перебрать данные вмассивах
-//2.на каждом круге цикла создавать заметку и рендерить её
+//ПОЧИНИТЬ RENDER
+//1.декомпозировать рендер
+//2.Вынести создание элемента заметки в одну функцию
+// 3.Отображать сначала избранные, а потом обычные
+//  3.1 использовать фрагмент
 ;// CONCATENATED MODULE: ./src/js/modal/modal.js
 
 
