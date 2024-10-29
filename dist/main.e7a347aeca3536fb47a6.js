@@ -9215,8 +9215,8 @@ const delitIconParams = {
 ;// CONCATENATED MODULE: ./src/js/utilities/render.js
 
 
-const creatorNote = arayNotes => {
-  arayNotes.forEach(note => {
+const creatorNote = arrayNotes => {
+  const listElementsNotes = arrayNotes.map(note => {
     const listItemElement = creator(liParams);
     const notesElement = creator(noteParams);
     const topPartNote = creator(topPartNoteParams);
@@ -9242,6 +9242,7 @@ const creatorNote = arayNotes => {
     wrapperTitleAndDate.append(titleNote, date);
     return listItemElement;
   });
+  return listElementsNotes;
 };
 const render = data => {
   let listNotes = document.querySelector("#listNotes");
@@ -9250,13 +9251,17 @@ const render = data => {
     const main = document.querySelector("#main");
     main.append(listNotes);
   }
-  const noteElement = creatorNote(data.favorites);
-  listNotes.append(noteElement);
+  listNotes.innerHTML = "";
+  const notesElementFavorites = creatorNote(data.favorites);
+  const notesElementRegulary = creatorNote(data.regulary);
+  notesElementFavorites.forEach(element => {
+    listNotes.append(element);
+  });
+  notesElementRegulary.forEach(element => {
+    listNotes.append(element);
+  });
 };
 /* harmony default export */ const utilities_render = (render);
-//ПОЧИНИТЬ RENDER
-//1.декомпозировать рендер
-//2.Вынести создание элемента заметки в одну функцию
 // 3.Отображать сначала избранные, а потом обычные
 //  3.1 использовать фрагмент
 ;// CONCATENATED MODULE: ./src/js/modal/modal.js

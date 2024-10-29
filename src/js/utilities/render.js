@@ -56,18 +56,26 @@ const render = (data) => {
         main.append(listNotes);
     }
 
+    listNotes.innerHTML = "";
+    const wrapperNotes = new DocumentFragment();
+
     const notesElementFavorites = creatorNote(data.favorites);
     const notesElementRegulary = creatorNote(data.regulary);
 
-    notesElementFavorites.forEach((element) => {
-        listNotes.append(element);
+    notesElementRegulary.forEach((element) => {
+        wrapperNotes.prepend(element);
     });
 
-    notesElementRegulary.forEach((element) => {
-        listNotes.append(element);
+    notesElementFavorites.forEach((element) => {
+        wrapperNotes.prepend(element);
     });
+
+    listNotes.append(wrapperNotes);
 };
 
 export default render;
-// 3.Отображать сначала избранные, а потом обычные
-//  3.1 использовать фрагмент
+
+//1.проверить render на декомпозицию
+//2.подсветка звездочки в заметке
+//3.Заглушки текста
+//4.Удаление заметки
