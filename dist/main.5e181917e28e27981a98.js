@@ -9203,6 +9203,10 @@ const favouriteIconParams = {
   tagName: "button",
   classList: ["bg-[url('./img/starBlack.svg')]", "bg-cover", "bg-no-repeat", "w-6", "h-6"]
 };
+const favouriteGoldenIconParams = {
+  tagName: "button",
+  classList: ["bg-[url('./img/starGold-btn.svg')]", "bg-cover", "bg-no-repeat", "w-6", "h-6"]
+};
 const editIconParams = {
   tagName: "button",
   classList: ["bg-[url('./img/edit-btn.svg')]", "bg-cover", "bg-no-repeat", "w-6", "h-6"]
@@ -9225,7 +9229,12 @@ const creatorNote = arrayNotes => {
     const titleNote = creator(titleNoteParams);
     const date = creator(dateParams);
     const textNote = creator(textParams);
-    const favouriteIcon = creator(favouriteIconParams);
+    let favouriteIcon;
+    if (note.favorite) {
+      favouriteIcon = creator(favouriteGoldenIconParams);
+    } else {
+      favouriteIcon = creator(favouriteIconParams);
+    }
     const editIcon = creator(editIconParams);
     const delitIcon = creator(delitIconParams);
     titleNote.innerText = note.title;
@@ -9252,18 +9261,23 @@ const render = data => {
     main.append(listNotes);
   }
   listNotes.innerHTML = "";
+  const wrapperNotes = new DocumentFragment();
   const notesElementFavorites = creatorNote(data.favorites);
   const notesElementRegulary = creatorNote(data.regulary);
-  notesElementFavorites.forEach(element => {
-    listNotes.append(element);
-  });
   notesElementRegulary.forEach(element => {
-    listNotes.append(element);
+    wrapperNotes.prepend(element);
   });
+  notesElementFavorites.forEach(element => {
+    wrapperNotes.prepend(element);
+  });
+  listNotes.append(wrapperNotes);
 };
 /* harmony default export */ const utilities_render = (render);
-// 3.Отображать сначала избранные, а потом обычные
-//  3.1 использовать фрагмент
+
+//1.проверить render на декомпозицию
+//2.подсветка звездочки в заметке
+//3.Заглушки текста
+//4.Удаление заметки
 ;// CONCATENATED MODULE: ./src/js/modal/modal.js
 
 

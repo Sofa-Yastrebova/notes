@@ -65,6 +65,18 @@ const favouriteIconParams = {
         "h-6",
     ],
 };
+
+const favouriteGoldenIconParams = {
+    tagName: "button",
+    classList: [
+        "bg-[url('./img/starGold-btn.svg')]",
+        "bg-cover",
+        "bg-no-repeat",
+        "w-6",
+        "h-6",
+    ],
+};
+
 const editIconParams = {
     tagName: "button",
     classList: [
@@ -97,6 +109,7 @@ export {
     textParams,
     wrapperButtonControlParams,
     favouriteIconParams,
+    favouriteGoldenIconParams,
     editIconParams,
     delitIconParams,
 };

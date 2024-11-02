@@ -4,6 +4,7 @@ import {
     delitIconParams,
     editIconParams,
     favouriteIconParams,
+    favouriteGoldenIconParams,
     liParams,
     listNotesParams,
     noteParams,
@@ -24,7 +25,14 @@ const creatorNote = (arrayNotes) => {
         const titleNote = creator(titleNoteParams);
         const date = creator(dateParams);
         const textNote = creator(textParams);
-        const favouriteIcon = creator(favouriteIconParams);
+
+        let favouriteIcon;
+        if (note.favorite) {
+            favouriteIcon = creator(favouriteGoldenIconParams);
+        } else {
+            favouriteIcon = creator(favouriteIconParams);
+        }
+
         const editIcon = creator(editIconParams);
         const delitIcon = creator(delitIconParams);
 
@@ -76,6 +84,5 @@ const render = (data) => {
 export default render;
 
 //1.проверить render на декомпозицию
-//2.подсветка звездочки в заметке
 //3.Заглушки текста
 //4.Удаление заметки
