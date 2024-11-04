@@ -9140,9 +9140,17 @@ const setDataToArray = newNote => {
 const handlerData = form => {
   const formData = new FormData(form);
   const currentDate = new Date();
+  let isTitle = formData.get("input-title");
+  let isText = formData.get("message");
+  if (isTitle.length < 1) {
+    isTitle = "no title";
+  }
+  if (isText.length < 1) {
+    isText = "empty";
+  }
   const newNote = {
-    title: formData.get("input-title"),
-    text: formData.get("message"),
+    title: isTitle,
+    text: isText,
     favorite: formData.get("checkBox"),
     date: currentDate.toLocaleString("ru-RU", {
       day: "numeric",
@@ -9275,7 +9283,6 @@ const render = data => {
 /* harmony default export */ const utilities_render = (render);
 
 //1.проверить render на декомпозицию
-//2.подсветка звездочки в заметке
 //3.Заглушки текста
 //4.Удаление заметки
 ;// CONCATENATED MODULE: ./src/js/modal/modal.js

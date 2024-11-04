@@ -40,15 +40,19 @@ const handlerData = (form) => {
     const formData = new FormData(form);
     const currentDate = new Date();
     let isTitle = formData.get("input-title");
-    console.log(isTitle);
+    let isText = formData.get("message");
 
     if (isTitle.length < 1) {
         isTitle = "no title";
     }
 
+    if (isText.length < 1) {
+        isText = "empty";
+    }
+
     const newNote = {
         title: isTitle,
-        text: formData.get("message"),
+        text: isText,
         favorite: formData.get("checkBox"),
         date: currentDate.toLocaleString("ru-RU", {
             day: "numeric",
