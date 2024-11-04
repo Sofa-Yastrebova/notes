@@ -39,9 +39,15 @@ const setDataToArray = (newNote) => {
 const handlerData = (form) => {
     const formData = new FormData(form);
     const currentDate = new Date();
+    let isTitle = formData.get("input-title");
+    console.log(isTitle);
+
+    if (isTitle.length < 1) {
+        isTitle = "no title";
+    }
 
     const newNote = {
-        title: formData.get("input-title"),
+        title: isTitle,
         text: formData.get("message"),
         favorite: formData.get("checkBox"),
         date: currentDate.toLocaleString("ru-RU", {
