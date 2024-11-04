@@ -84,5 +84,4 @@ const render = (data) => {
 export default render;
 
 //1.проверить render на декомпозицию
-//3.Заглушки текста
 //4.Удаление заметки
