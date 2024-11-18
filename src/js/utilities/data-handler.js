@@ -28,6 +28,17 @@ const InitialData = () => {
 
 const notes = InitialData();
 
+const setId = (status) => {
+    let id = null;
+
+    if (status) {
+        id = `favorite${notes.favorites.length}`;
+    } else {
+        id = `regulary${notes.regulary.length}`;
+    }
+    return id;
+};
+
 const setDataToArray = (newNote) => {
     if (newNote.favorite) {
         notes.favorites.push(newNote);
@@ -41,6 +52,7 @@ const handlerData = (form) => {
     const currentDate = new Date();
     let isTitle = formData.get("input-title");
     let isText = formData.get("message");
+    let isFavorite = formData.get("checkBox") ? true : false;
 
     if (isTitle.length < 1) {
         isTitle = "no title";
@@ -61,6 +73,7 @@ const handlerData = (form) => {
             hour: "2-digit",
             minute: "2-digit",
         }),
+        id: setId(isFavorite),
     };
 
     setDataToArray(newNote);

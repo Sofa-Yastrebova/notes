@@ -9130,6 +9130,14 @@ const InitialData = () => {
   }
 };
 const notes = InitialData();
+const setId = status => {
+  let id = null;
+  if (status) {
+    id = `favorite${notes.favorites.length - 1}`;
+  } else {
+    id = `regulary${notes.regulary.length - 1}`;
+  }
+};
 const setDataToArray = newNote => {
   if (newNote.favorite) {
     notes.favorites.push(newNote);
@@ -9142,6 +9150,7 @@ const handlerData = form => {
   const currentDate = new Date();
   let isTitle = formData.get("input-title");
   let isText = formData.get("message");
+  let isFavorite = formData.get("checkBox") ? true : false;
   if (isTitle.length < 1) {
     isTitle = "no title";
   }
@@ -9158,7 +9167,8 @@ const handlerData = form => {
       year: "numeric",
       hour: "2-digit",
       minute: "2-digit"
-    })
+    }),
+    id: setId(isFavorite)
   };
   setDataToArray(newNote);
   setDataToStorage(notes);
@@ -9283,7 +9293,6 @@ const render = data => {
 /* harmony default export */ const utilities_render = (render);
 
 //1.проверить render на декомпозицию
-//3.Заглушки текста
 //4.Удаление заметки
 ;// CONCATENATED MODULE: ./src/js/modal/modal.js
 
@@ -9335,6 +9344,9 @@ btnAddNote.addEventListener("click", initialModal);
 
 
 
+
+
+utilities_render(getDataFromStorage());
 })();
 
 /******/ })()
