@@ -8,7 +8,7 @@ const listNotesParams = {
 
 const liParams = {
     tagName: "li",
-    classList: [],
+    attr: {},
 };
 
 const noteParams = {

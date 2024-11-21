@@ -39,6 +39,7 @@ const creatorNote = (arrayNotes) => {
         titleNote.innerText = note.title;
         textNote.innerText = note.text;
         date.innerText = `Created ${note.date.slice(0, 10)} at ${note.date.slice(12)}`;
+        listItemElement.id = note.id;
         listItemElement.append(notesElement);
         notesElement.append(topPartNote);
         notesElement.append(textNote);
@@ -83,5 +84,4 @@ const render = (data) => {
 
 export default render;
 
-//1.проверить render на декомпозицию
-//4.Удаление заметки
+//1.добавить  id  из данных в разметку

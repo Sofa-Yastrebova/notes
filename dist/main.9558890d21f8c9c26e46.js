@@ -9133,10 +9133,11 @@ const notes = InitialData();
 const setId = status => {
   let id = null;
   if (status) {
-    id = `favorite${notes.favorites.length - 1}`;
+    id = `favorite${notes.favorites.length}`;
   } else {
-    id = `regulary${notes.regulary.length - 1}`;
+    id = `regulary${notes.regulary.length}`;
   }
+  return id;
 };
 const setDataToArray = newNote => {
   if (newNote.favorite) {
@@ -9184,7 +9185,7 @@ const listNotesParams = {
 };
 const liParams = {
   tagName: "li",
-  classList: []
+  attr: {}
 };
 const noteParams = {
   tagName: "article",
@@ -9292,8 +9293,7 @@ const render = data => {
 };
 /* harmony default export */ const utilities_render = (render);
 
-//1.проверить render на декомпозицию
-//4.Удаление заметки
+//1.добавить  id  из данных в разметку
 ;// CONCATENATED MODULE: ./src/js/modal/modal.js
 
 
