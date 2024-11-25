@@ -96,6 +96,9 @@ const delitIconParams = {
         "w-6",
         "h-6",
     ],
+    attr: {
+        "data-remove": "",
+    },
 };
 
 export {

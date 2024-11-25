@@ -55,7 +55,7 @@ const creatorNote = (arrayNotes) => {
     return listElementsNotes;
 };
 
-const render = (data) => {
+const createList = () => {
     let listNotes = document.querySelector("#listNotes");
 
     if (!listNotes) {
@@ -65,7 +65,23 @@ const render = (data) => {
         main.append(listNotes);
     }
 
-    listNotes.innerHTML = "";
+    listNotes.addEventListener("click", (e) => {
+        const isRemove = e.target.closest("[data-remove]");
+
+        if (isRemove) {
+            const noteItem = isRemove.closest("li");
+            const currentId = noteItem.id;
+            console.log(currentId);
+        }
+    });
+
+    return listNotes;
+};
+
+const listElement = createList();
+
+const render = (data) => {
+    listElement.innerHTML = "";
     const wrapperNotes = new DocumentFragment();
 
     const notesElementFavorites = creatorNote(data.favorites);
@@ -79,9 +95,12 @@ const render = (data) => {
         wrapperNotes.prepend(element);
     });
 
-    listNotes.append(wrapperNotes);
+    listElement.append(wrapperNotes);
 };
 
 export default render;
 
-//1.добавить  id  из данных в разметку
+//1. найти в данных заметку по id(dataHandler)
+//2. Удалить нужную заметку
+//3. Уменьшить id последующих заметок
+//4. Перезапустить render

@@ -9232,7 +9232,10 @@ const editIconParams = {
 };
 const delitIconParams = {
   tagName: "button",
-  classList: ["bg-[url('./img/trash-btn.svg')]", "bg-cover", "bg-no-repeat", "w-6", "h-6"]
+  classList: ["bg-[url('./img/trash-btn.svg')]", "bg-cover", "bg-no-repeat", "w-6", "h-6"],
+  attr: {
+    "data-remove": ""
+  }
 };
 
 ;// CONCATENATED MODULE: ./src/js/utilities/render.js
@@ -9259,6 +9262,7 @@ const creatorNote = arrayNotes => {
     titleNote.innerText = note.title;
     textNote.innerText = note.text;
     date.innerText = `Created ${note.date.slice(0, 10)} at ${note.date.slice(12)}`;
+    listItemElement.id = note.id;
     listItemElement.append(notesElement);
     notesElement.append(topPartNote);
     notesElement.append(textNote);
@@ -9272,14 +9276,24 @@ const creatorNote = arrayNotes => {
   });
   return listElementsNotes;
 };
-const render = data => {
+const createList = () => {
   let listNotes = document.querySelector("#listNotes");
   if (!listNotes) {
     listNotes = creator(listNotesParams);
     const main = document.querySelector("#main");
     main.append(listNotes);
   }
-  listNotes.innerHTML = "";
+  listNotes.addEventListener("click", e => {
+    const isRemove = e.target;
+    if (isRemove) {
+      console.log(isRemove);
+    }
+  });
+  return listNotes;
+};
+const listElement = createList();
+const render = data => {
+  listElement.innerHTML = "";
   const wrapperNotes = new DocumentFragment();
   const notesElementFavorites = creatorNote(data.favorites);
   const notesElementRegulary = creatorNote(data.regulary);
@@ -9289,11 +9303,15 @@ const render = data => {
   notesElementFavorites.forEach(element => {
     wrapperNotes.prepend(element);
   });
-  listNotes.append(wrapperNotes);
+  listElement.append(wrapperNotes);
 };
 /* harmony default export */ const utilities_render = (render);
 
-//1.добавить  id  из данных в разметку
+//1. поставить прослушку на список  клик  +
+//2.метод closest - убедимся, что клик происходит на корзине
+//3. Найти предка корзины, который является предком ли
+//4. вытащить id из лишки
+//5. найти в данных заметку по id
 ;// CONCATENATED MODULE: ./src/js/modal/modal.js
 
 
