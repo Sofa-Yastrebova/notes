@@ -9174,6 +9174,15 @@ const handlerData = form => {
   setDataToArray(newNote);
   setDataToStorage(notes);
 };
+const removeNote = id => {
+  const currentId = id.startsWith("favorite");
+  console.log(currentId);
+};
+//1.проверить с какого слова начинается id
+//2. в зависимости от этого зайти в нужный массив в переменной notes
+//3.перебрать массив и заглянуть вутрь каждой заметки
+//4. проверить совпадает ли id  с  id  в объекте
+
 
 ;// CONCATENATED MODULE: ./src/js/utilities/params-notes.js
 const listNotesParams = {
@@ -9241,6 +9250,7 @@ const delitIconParams = {
 ;// CONCATENATED MODULE: ./src/js/utilities/render.js
 
 
+
 const creatorNote = arrayNotes => {
   const listElementsNotes = arrayNotes.map(note => {
     const listItemElement = creator(liParams);
@@ -9284,9 +9294,11 @@ const createList = () => {
     main.append(listNotes);
   }
   listNotes.addEventListener("click", e => {
-    const isRemove = e.target;
-    if (isRemove) {
-      console.log(isRemove);
+    const isRemoveButton = e.target.closest("[data-remove]");
+    if (isRemoveButton) {
+      const noteItem = isRemoveButton.closest("li");
+      const currentId = noteItem.id;
+      removeNote(currentId);
     }
   });
   return listNotes;
@@ -9307,11 +9319,10 @@ const render = data => {
 };
 /* harmony default export */ const utilities_render = (render);
 
-//1. поставить прослушку на список  клик  +
-//2.метод closest - убедимся, что клик происходит на корзине
-//3. Найти предка корзины, который является предком ли
-//4. вытащить id из лишки
-//5. найти в данных заметку по id
+//1. найти в данных заметку по id(dataHandler)
+//2. Удалить нужную заметку
+//3. Уменьшить id последующих заметок
+//4. Перезапустить render
 ;// CONCATENATED MODULE: ./src/js/modal/modal.js
 
 

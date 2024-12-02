@@ -1,4 +1,5 @@
 import { creator } from "./creator.js";
+import { removeNote } from "./data-handler.js";
 import {
     dateParams,
     delitIconParams,
@@ -66,12 +67,12 @@ const createList = () => {
     }
 
     listNotes.addEventListener("click", (e) => {
-        const isRemove = e.target.closest("[data-remove]");
+        const isRemoveButton = e.target.closest("[data-remove]");
 
-        if (isRemove) {
-            const noteItem = isRemove.closest("li");
+        if (isRemoveButton) {
+            const noteItem = isRemoveButton.closest("li");
             const currentId = noteItem.id;
-            console.log(currentId);
+            removeNote(currentId);
         }
     });
 
@@ -100,7 +101,7 @@ const render = (data) => {
 
 export default render;
 
-//1. найти в данных заметку по id(dataHandler)
-//2. Удалить нужную заметку
+//1. найти в данных заметку по id(dataHandler)+
+//2. Удалить нужную заметку  +
 //3. Уменьшить id последующих заметок
 //4. Перезапустить render

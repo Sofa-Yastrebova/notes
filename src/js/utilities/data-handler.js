@@ -1,5 +1,3 @@
-// 2. Дополнить объект заметки нужными значениями(text, id, status)
-
 const setDataToStorage = (notes) => {
     const dataString = JSON.stringify(notes);
     localStorage.setItem("notes", dataString);
@@ -80,4 +78,18 @@ const handlerData = (form) => {
     setDataToStorage(notes);
 };
 
-export { handlerData, getDataFromStorage };
+const removeNote = (id) => {
+    const currentId = id.startsWith("favorite");
+    if (currentId) {
+        notes.favorites.forEach((note) => {
+            if (id === note.id) {
+                const indexCurrentNote = notes.favorites.indexOf(note);
+                notes.favorites.splice(indexCurrentNote, 1);
+            }
+        });
+    }
+    // дописать улоаие для удаления списка ругюляри
+    setDataToStorage(notes);
+};
+
+export { handlerData, getDataFromStorage, removeNote };
