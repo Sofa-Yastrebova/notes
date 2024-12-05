@@ -1,5 +1,5 @@
 import { creator } from "./creator.js";
-import { removeNote } from "./data-handler.js";
+import { getDataFromStorage, removeNote } from "./data-handler.js";
 import {
     dateParams,
     delitIconParams,
@@ -73,6 +73,8 @@ const createList = () => {
             const noteItem = isRemoveButton.closest("li");
             const currentId = noteItem.id;
             removeNote(currentId);
+
+            render(getDataFromStorage());
         }
     });
 
@@ -100,8 +102,3 @@ const render = (data) => {
 };
 
 export default render;
-
-//1. найти в данных заметку по id(dataHandler)+
-//2. Удалить нужную заметку  +
-//3. Уменьшить id последующих заметок
-//4. Перезапустить render

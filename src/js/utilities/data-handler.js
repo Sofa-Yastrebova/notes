@@ -30,9 +30,9 @@ const setId = (status) => {
     let id = null;
 
     if (status) {
-        id = `favorite${notes.favorites.length}`;
+        id = `${notes.favorites.length}favorite`;
     } else {
-        id = `regulary${notes.regulary.length}`;
+        id = `${notes.regulary.length}regulary`;
     }
     return id;
 };
@@ -79,16 +79,43 @@ const handlerData = (form) => {
 };
 
 const removeNote = (id) => {
-    const currentId = id.startsWith("favorite");
+    const currentId = id.endsWith("favorite");
     if (currentId) {
         notes.favorites.forEach((note) => {
             if (id === note.id) {
                 const indexCurrentNote = notes.favorites.indexOf(note);
                 notes.favorites.splice(indexCurrentNote, 1);
+
+                for (
+                    let i = indexCurrentNote;
+                    i < notes.favorites.length;
+                    i++
+                ) {
+                    console.log(parseInt(notes.favorites[i].id));
+                    const oldIdNumber = parseInt(notes.favorites[i].id);
+                    const numberId = oldIdNumber - 1;
+                    const newId = `${numberId}favorite`;
+                    notes.favorites[i].id = newId;
+                }
             }
         });
     }
-    // дописать улоаие для удаления списка ругюляри
+    if (!currentId) {
+        notes.regulary.forEach((note) => {
+            if (id === note.id) {
+                const indexCurrentNote = notes.regulary.indexOf(note);
+                notes.regulary.splice(indexCurrentNote, 1);
+
+                for (let i = indexCurrentNote; i < notes.regulary.length; i++) {
+                    console.log(parseInt(notes.regulary[i].id));
+                    const oldIdNumber = parseInt(notes.regulary[i].id);
+                    const numberId = oldIdNumber - 1;
+                    const newId = `${numberId}regulary`;
+                    notes.regulary[i].id = newId;
+                }
+            }
+        });
+    }
     setDataToStorage(notes);
 };
 

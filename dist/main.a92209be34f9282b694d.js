@@ -9105,8 +9105,6 @@ const addAttr = (currentElement, attr) => {
 };
 
 ;// CONCATENATED MODULE: ./src/js/utilities/data-handler.js
-// 2. Дополнить объект заметки нужными значениями(text, id, status)
-
 const setDataToStorage = notes => {
   const dataString = JSON.stringify(notes);
   localStorage.setItem("notes", dataString);
@@ -9133,9 +9131,9 @@ const notes = InitialData();
 const setId = status => {
   let id = null;
   if (status) {
-    id = `favorite${notes.favorites.length}`;
+    id = `${notes.favorites.length}favorite`;
   } else {
-    id = `regulary${notes.regulary.length}`;
+    id = `${notes.regulary.length}regulary`;
   }
   return id;
 };
@@ -9175,14 +9173,35 @@ const handlerData = form => {
   setDataToStorage(notes);
 };
 const removeNote = id => {
-  const currentId = id.startsWith("favorite");
-  console.log(currentId);
+  const currentId = id.endsWith("favorite");
+  if (currentId) {
+    notes.favorites.forEach(note => {
+      if (id === note.id) {
+        const indexCurrentNote = notes.favorites.indexOf(note);
+        notes.favorites.splice(indexCurrentNote, 1);
+        for (let i = indexCurrentNote; i < notes.favorites.length; i++) {
+          console.log(parseInt(notes.favorites[i].id));
+          const oldIdNumber = parseInt(notes.favorites[i].id);
+          //дз тут
+          //1. создать переменную для хранения уменьшенной id 
+          //2. создать обновленное id
+          //3. новую id  присвоить в объект заметки
+          const numberId = oldIdNumber - 1;
+          const newId = `${numberId}favorite`;
+        }
+      }
+    });
+  }
+  if (!currentId) {
+    notes.regulary.forEach(note => {
+      if (id === note.id) {
+        const indexCurrentNote = notes.regulary.indexOf(note);
+        notes.regulary.splice(indexCurrentNote, 1);
+      }
+    });
+  }
+  setDataToStorage(notes);
 };
-//1.проверить с какого слова начинается id
-//2. в зависимости от этого зайти в нужный массив в переменной notes
-//3.перебрать массив и заглянуть вутрь каждой заметки
-//4. проверить совпадает ли id  с  id  в объекте
-
 
 ;// CONCATENATED MODULE: ./src/js/utilities/params-notes.js
 const listNotesParams = {
@@ -9319,8 +9338,8 @@ const render = data => {
 };
 /* harmony default export */ const utilities_render = (render);
 
-//1. найти в данных заметку по id(dataHandler)
-//2. Удалить нужную заметку
+//1. найти в данных заметку по id(dataHandler)+
+//2. Удалить нужную заметку  +
 //3. Уменьшить id последующих заметок
 //4. Перезапустить render
 ;// CONCATENATED MODULE: ./src/js/modal/modal.js
