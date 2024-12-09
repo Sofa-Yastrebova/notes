@@ -9172,37 +9172,34 @@ const handlerData = form => {
   setDataToArray(newNote);
   setDataToStorage(notes);
 };
+const findNote = (array, id) => {
+  array.forEach(note => {
+    if (id === note.id) {
+      const indexCurrentNote = array.indexOf(note);
+      array.splice(indexCurrentNote, 1);
+      for (let i = indexCurrentNote; i < array.length; i++) {
+        console.log(parseInt(array[i].id));
+        const oldIdNumber = parseInt(array[i].id);
+        const numberId = oldIdNumber - 1;
+        const newId = `${numberId}favorite`;
+        array[i].id = newId;
+      }
+    }
+  });
+};
 const removeNote = id => {
   const currentId = id.endsWith("favorite");
   if (currentId) {
-    notes.favorites.forEach(note => {
-      if (id === note.id) {
-        const indexCurrentNote = notes.favorites.indexOf(note);
-        notes.favorites.splice(indexCurrentNote, 1);
-        for (let i = indexCurrentNote; i < notes.favorites.length; i++) {
-          console.log(parseInt(notes.favorites[i].id));
-          const oldIdNumber = parseInt(notes.favorites[i].id);
-          //дз тут
-          //1. создать переменную для хранения уменьшенной id 
-          //2. создать обновленное id
-          //3. новую id  присвоить в объект заметки
-          const numberId = oldIdNumber - 1;
-          const newId = `${numberId}favorite`;
-        }
-      }
-    });
+    findNote(notes.favorites, id);
   }
   if (!currentId) {
-    notes.regulary.forEach(note => {
-      if (id === note.id) {
-        const indexCurrentNote = notes.regulary.indexOf(note);
-        notes.regulary.splice(indexCurrentNote, 1);
-      }
-    });
+    findNote(notes.regulary, id);
   }
   setDataToStorage(notes);
 };
 
+
+// 1.декомпозировать удаление заметки
 ;// CONCATENATED MODULE: ./src/js/utilities/params-notes.js
 const listNotesParams = {
   tagName: "ul",
@@ -9318,6 +9315,7 @@ const createList = () => {
       const noteItem = isRemoveButton.closest("li");
       const currentId = noteItem.id;
       removeNote(currentId);
+      render(getDataFromStorage());
     }
   });
   return listNotes;
@@ -9337,11 +9335,6 @@ const render = data => {
   listElement.append(wrapperNotes);
 };
 /* harmony default export */ const utilities_render = (render);
-
-//1. найти в данных заметку по id(dataHandler)+
-//2. Удалить нужную заметку  +
-//3. Уменьшить id последующих заметок
-//4. Перезапустить render
 ;// CONCATENATED MODULE: ./src/js/modal/modal.js
 
 

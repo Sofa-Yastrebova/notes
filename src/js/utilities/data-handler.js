@@ -77,46 +77,37 @@ const handlerData = (form) => {
     setDataToArray(newNote);
     setDataToStorage(notes);
 };
+const decreaseId = (array, indexCurrentNote) => {
+    for (let i = indexCurrentNote; i < array.length; i++) {
+        const oldIdNumber = parseInt(array[i].id);
+        const numberId = oldIdNumber - 1;
+        const newId = `${numberId}favorite`;
+        array[i].id = newId;
+    }
+};
+
+const findNote = (array, id) => {
+    array.forEach((note) => {
+        if (id === note.id) {
+            const indexCurrentNote = array.indexOf(note);
+            array.splice(indexCurrentNote, 1);
+
+            decreaseId(array, indexCurrentNote);
+        }
+    });
+};
 
 const removeNote = (id) => {
     const currentId = id.endsWith("favorite");
     if (currentId) {
-        notes.favorites.forEach((note) => {
-            if (id === note.id) {
-                const indexCurrentNote = notes.favorites.indexOf(note);
-                notes.favorites.splice(indexCurrentNote, 1);
-
-                for (
-                    let i = indexCurrentNote;
-                    i < notes.favorites.length;
-                    i++
-                ) {
-                    console.log(parseInt(notes.favorites[i].id));
-                    const oldIdNumber = parseInt(notes.favorites[i].id);
-                    const numberId = oldIdNumber - 1;
-                    const newId = `${numberId}favorite`;
-                    notes.favorites[i].id = newId;
-                }
-            }
-        });
+        findNote(notes.favorites, id);
     }
     if (!currentId) {
-        notes.regulary.forEach((note) => {
-            if (id === note.id) {
-                const indexCurrentNote = notes.regulary.indexOf(note);
-                notes.regulary.splice(indexCurrentNote, 1);
-
-                for (let i = indexCurrentNote; i < notes.regulary.length; i++) {
-                    console.log(parseInt(notes.regulary[i].id));
-                    const oldIdNumber = parseInt(notes.regulary[i].id);
-                    const numberId = oldIdNumber - 1;
-                    const newId = `${numberId}regulary`;
-                    notes.regulary[i].id = newId;
-                }
-            }
-        });
+        findNote(notes.regulary, id);
     }
     setDataToStorage(notes);
 };
 
 export { handlerData, getDataFromStorage, removeNote };
+
+// 1.пофиксить постфикс  для  id
