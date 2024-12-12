@@ -77,37 +77,36 @@ const handlerData = (form) => {
     setDataToArray(newNote);
     setDataToStorage(notes);
 };
-const decreaseId = (array, indexCurrentNote) => {
+const decreaseId = (array, indexCurrentNote, status) => {
     for (let i = indexCurrentNote; i < array.length; i++) {
         const oldIdNumber = parseInt(array[i].id);
         const numberId = oldIdNumber - 1;
-        const newId = `${numberId}favorite`;
+        const newId = `${numberId}${status}`;
         array[i].id = newId;
     }
 };
 
-const findNote = (array, id) => {
+const findNote = (array, id, status) => {
     array.forEach((note) => {
         if (id === note.id) {
             const indexCurrentNote = array.indexOf(note);
             array.splice(indexCurrentNote, 1);
 
-            decreaseId(array, indexCurrentNote);
+            decreaseId(array, indexCurrentNote, status);
         }
     });
 };
 
 const removeNote = (id) => {
     const currentId = id.endsWith("favorite");
+    const status = currentId ? "favorite" : "regulary";
     if (currentId) {
-        findNote(notes.favorites, id);
+        findNote(notes.favorites, id, status);
     }
     if (!currentId) {
-        findNote(notes.regulary, id);
+        findNote(notes.regulary, id, status);
     }
     setDataToStorage(notes);
 };
 
 export { handlerData, getDataFromStorage, removeNote };
-
-// 1.пофиксить постфикс  для  id

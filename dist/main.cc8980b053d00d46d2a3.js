@@ -9172,34 +9172,37 @@ const handlerData = form => {
   setDataToArray(newNote);
   setDataToStorage(notes);
 };
-const findNote = (array, id) => {
+const decreaseId = (array, indexCurrentNote, status) => {
+  for (let i = indexCurrentNote; i < array.length; i++) {
+    const oldIdNumber = parseInt(array[i].id);
+    const numberId = oldIdNumber - 1;
+    const newId = `${(numberId, status)}`;
+    array[i].id = newId;
+  }
+};
+const findNote = (array, id, status) => {
   array.forEach(note => {
     if (id === note.id) {
       const indexCurrentNote = array.indexOf(note);
       array.splice(indexCurrentNote, 1);
-      for (let i = indexCurrentNote; i < array.length; i++) {
-        console.log(parseInt(array[i].id));
-        const oldIdNumber = parseInt(array[i].id);
-        const numberId = oldIdNumber - 1;
-        const newId = `${numberId}favorite`;
-        array[i].id = newId;
-      }
+      decreaseId(array, indexCurrentNote, status);
     }
   });
 };
 const removeNote = id => {
   const currentId = id.endsWith("favorite");
+  const status = currentId ? "favorite" : "regulary";
   if (currentId) {
-    findNote(notes.favorites, id);
+    findNote(notes.favorites, id, status);
   }
   if (!currentId) {
-    findNote(notes.regulary, id);
+    findNote(notes.regulary, id, status);
   }
   setDataToStorage(notes);
 };
 
 
-// 1.декомпозировать удаление заметки
+// 1.пофиксить постфикс  для  id
 ;// CONCATENATED MODULE: ./src/js/utilities/params-notes.js
 const listNotesParams = {
   tagName: "ul",
