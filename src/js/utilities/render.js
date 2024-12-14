@@ -1,3 +1,4 @@
+import initialModal from "../modal/modal.js";
 import { creator } from "./creator.js";
 import { getDataFromStorage, removeNote } from "./data-handler.js";
 import {
@@ -68,6 +69,7 @@ const createList = () => {
 
     listNotes.addEventListener("click", (e) => {
         const isRemoveButton = e.target.closest("[data-remove]");
+        const isEditBtn = e.target.closest("[data-edit]");
 
         if (isRemoveButton) {
             const noteItem = isRemoveButton.closest("li");
@@ -75,6 +77,9 @@ const createList = () => {
             removeNote(currentId);
 
             render(getDataFromStorage());
+        } else if (isEditBtn) {
+            const statusEdit = true;
+            initialModal(statusEdit);
         }
     });
 

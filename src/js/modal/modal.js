@@ -10,6 +10,7 @@ import {
     inputCheckboxParams,
     spanCheckboxParams,
     wrapperActionParams,
+    buttonEditParams,
 } from "./params-modal.js";
 
 import { creator } from "../utilities/creator.js";
@@ -18,7 +19,7 @@ import render from "../utilities/render.js";
 
 const btnAddNote = document.querySelector("#btnAddNote");
 
-const initialModal = () => {
+const initialModal = (status) => {
     const fadeBlock = creator(fadeBlockParams);
     document.body.append(fadeBlock);
 
@@ -46,8 +47,13 @@ const initialModal = () => {
     const wrapperAction = creator(wrapperActionParams);
     form.append(wrapperAction);
 
-    const buttonAdd = creator(buttonAddParams);
-    wrapperAction.append(buttonAdd);
+    if (status) {
+        const buttonEdit = creator(buttonEditParams);
+        wrapperAction.append(buttonEdit);
+    } else {
+        const buttonAdd = creator(buttonAddParams);
+        wrapperAction.append(buttonAdd);
+    }
 
     const buttonCancel = creator(buttonCancelParams);
     wrapperAction.append(buttonCancel);
@@ -64,6 +70,13 @@ const initialModal = () => {
         removeRenderModal(form, fadeBlock);
         render(getDataFromStorage());
     });
+
+    buttonCancel.addEventListener("click", () =>
+        removeRenderModal(form, fadeBlock)
+    );
+    fadeBlock.addEventListener("click", () =>
+        removeRenderModal(form, fadeBlock)
+    );
 };
 
 const removeRenderModal = (formElement, fadeBlock) => {
@@ -71,4 +84,9 @@ const removeRenderModal = (formElement, fadeBlock) => {
     fadeBlock.remove();
 };
 
-btnAddNote.addEventListener("click", initialModal);
+btnAddNote.addEventListener("click", () => {
+    const statusAdd = false;
+    initialModal(statusAdd);
+});
+
+export default initialModal;

@@ -86,6 +86,9 @@ const editIconParams = {
         "w-6",
         "h-6",
     ],
+    attr: {
+        "data-edit": "",
+    },
 };
 const delitIconParams = {
     tagName: "button",

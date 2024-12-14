@@ -9176,7 +9176,7 @@ const decreaseId = (array, indexCurrentNote, status) => {
   for (let i = indexCurrentNote; i < array.length; i++) {
     const oldIdNumber = parseInt(array[i].id);
     const numberId = oldIdNumber - 1;
-    const newId = `${(numberId, status)}`;
+    const newId = `${numberId}${status}`;
     array[i].id = newId;
   }
 };
@@ -9201,8 +9201,6 @@ const removeNote = id => {
   setDataToStorage(notes);
 };
 
-
-// 1.пофиксить постфикс  для  id
 ;// CONCATENATED MODULE: ./src/js/utilities/params-notes.js
 const listNotesParams = {
   tagName: "ul",
@@ -9256,7 +9254,10 @@ const favouriteGoldenIconParams = {
 };
 const editIconParams = {
   tagName: "button",
-  classList: ["bg-[url('./img/edit-btn.svg')]", "bg-cover", "bg-no-repeat", "w-6", "h-6"]
+  classList: ["bg-[url('./img/edit-btn.svg')]", "bg-cover", "bg-no-repeat", "w-6", "h-6"],
+  attr: {
+    "data-edit": ""
+  }
 };
 const delitIconParams = {
   tagName: "button",
@@ -9267,6 +9268,7 @@ const delitIconParams = {
 };
 
 ;// CONCATENATED MODULE: ./src/js/utilities/render.js
+
 
 
 
@@ -9314,11 +9316,15 @@ const createList = () => {
   }
   listNotes.addEventListener("click", e => {
     const isRemoveButton = e.target.closest("[data-remove]");
+    const isEditBtn = e.target.closest("[data-edit]");
     if (isRemoveButton) {
       const noteItem = isRemoveButton.closest("li");
       const currentId = noteItem.id;
       removeNote(currentId);
       render(getDataFromStorage());
+    } else if (isEditBtn) {
+      const statusEdit = true;
+      modal(statusEdit);
     }
   });
   return listNotes;
@@ -9344,7 +9350,7 @@ const render = data => {
 
 
 const btnAddNote = document.querySelector("#btnAddNote");
-const initialModal = () => {
+const initialModal = status => {
   const fadeBlock = creator(fadeBlockParams);
   document.body.append(fadeBlock);
   const form = creator(formParams);
@@ -9363,8 +9369,13 @@ const initialModal = () => {
   form.append(textarea);
   const wrapperAction = creator(wrapperActionParams);
   form.append(wrapperAction);
-  const buttonAdd = creator(buttonAddParams);
-  wrapperAction.append(buttonAdd);
+  if (status) {
+    const buttonEdit = creator(buttonEditParams);
+    wrapperAction.append(buttonEdit);
+  } else {
+    const buttonAdd = creator(buttonAddParams);
+    wrapperAction.append(buttonAdd);
+  }
   const buttonCancel = creator(buttonCancelParams);
   wrapperAction.append(buttonCancel);
   const inputTitle = document.querySelector("#inputTitle");
@@ -9377,12 +9388,18 @@ const initialModal = () => {
     removeRenderModal(form, fadeBlock);
     utilities_render(getDataFromStorage());
   });
+  buttonCancel.addEventListener("click", () => removeRenderModal(form, fadeBlock));
+  fadeBlock.addEventListener("click", () => removeRenderModal(form, fadeBlock));
 };
 const removeRenderModal = (formElement, fadeBlock) => {
   formElement.remove();
   fadeBlock.remove();
 };
-btnAddNote.addEventListener("click", initialModal);
+btnAddNote.addEventListener("click", () => {
+  const statusAdd = false;
+  initialModal(statusAdd);
+});
+/* harmony default export */ const modal = (initialModal);
 ;// CONCATENATED MODULE: ./src/index-entry.js
 
 
