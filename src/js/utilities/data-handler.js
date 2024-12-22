@@ -86,27 +86,44 @@ const decreaseId = (array, indexCurrentNote, status) => {
     }
 };
 
-const findNote = (array, id, status) => {
+const removeNote = (objNote) => {
+    const [array, status] = objNote.id.endsWith("favorite")
+        ? [notes.favorites, "favorite"]
+        : [notes.regulary, "regulary"];
+
     array.forEach((note) => {
-        if (id === note.id) {
+        if (objNote.id === note.id) {
             const indexCurrentNote = array.indexOf(note);
+            console.log(indexCurrentNote);
+
             array.splice(indexCurrentNote, 1);
 
             decreaseId(array, indexCurrentNote, status);
         }
     });
-};
 
-const removeNote = (id) => {
-    const currentId = id.endsWith("favorite");
-    const status = currentId ? "favorite" : "regulary";
-    if (currentId) {
-        findNote(notes.favorites, id, status);
-    }
-    if (!currentId) {
-        findNote(notes.regulary, id, status);
-    }
     setDataToStorage(notes);
 };
 
-export { handlerData, getDataFromStorage, removeNote };
+const findNote = (id) => {
+    const isFavoriteId = id.endsWith("favorite");
+    let currentNote = null;
+    if (isFavoriteId) {
+        notes.favorites.forEach((note) => {
+            if (id === note.id) {
+                currentNote = note;
+            }
+        });
+    }
+    if (!isFavoriteId) {
+        notes.regulary.forEach((note) => {
+            if (id === note.id) {
+                currentNote = note;
+            }
+        });
+    }
+
+    return currentNote;
+};
+
+export { handlerData, getDataFromStorage, removeNote, findNote };

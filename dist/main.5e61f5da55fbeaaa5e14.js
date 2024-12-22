@@ -9180,25 +9180,38 @@ const decreaseId = (array, indexCurrentNote, status) => {
     array[i].id = newId;
   }
 };
-const findNote = (array, id, status) => {
+
+// Декомпозировать findNote и removeNote 
+// removeNote должна принимать объект из findnote и удалять заметку
+
+const removeNote = objNote => {
+  const [array, status] = objNote.id.endsWith("favorite") ? [notes.favorites, "favorite"] : [notes.regulary, "regulary"];
   array.forEach(note => {
-    if (id === note.id) {
+    if (objNote.id === note.id) {
       const indexCurrentNote = array.indexOf(note);
       array.splice(indexCurrentNote, 1);
       decreaseId(array, indexCurrentNote, status);
     }
   });
 };
-const removeNote = id => {
-  const currentId = id.endsWith("favorite");
-  const status = currentId ? "favorite" : "regulary";
-  if (currentId) {
-    findNote(notes.favorites, id, status);
+const findNote = id => {
+  const isFavoriteId = id.endsWith("favorite");
+  let currentNote = null;
+  if (isFavoriteId) {
+    notes.favorites.forEach(note => {
+      if (id === note.id) {
+        currentNote = note;
+      }
+    });
   }
-  if (!currentId) {
-    findNote(notes.regulary, id, status);
+  if (!isFavoriteId) {
+    notes.regulary.forEach(note => {
+      if (id === note.id) {
+        currentNote = note;
+      }
+    });
   }
-  setDataToStorage(notes);
+  return currentNote;
 };
 
 ;// CONCATENATED MODULE: ./src/js/utilities/params-notes.js
@@ -9319,8 +9332,7 @@ const createList = () => {
     const isEditBtn = e.target.closest("[data-edit]");
     if (isRemoveButton) {
       const noteItem = isRemoveButton.closest("li");
-      const currentId = noteItem.id;
-      removeNote(currentId);
+      removeNote(findNote());
       render(getDataFromStorage());
     } else if (isEditBtn) {
       const statusEdit = true;
@@ -9400,6 +9412,11 @@ btnAddNote.addEventListener("click", () => {
   initialModal(statusAdd);
 });
 /* harmony default export */ const modal = (initialModal);
+
+//1. Получить данные заметки, которую нужно изменить
+//2. Отобразить данные в модальном окне
+//3. При нажатие на кнопку edit снова находить нужную заметку и менять в ней данные
+//4. Перезапуск render
 ;// CONCATENATED MODULE: ./src/index-entry.js
 
 

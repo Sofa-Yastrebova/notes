@@ -1,6 +1,6 @@
 import initialModal from "../modal/modal.js";
 import { creator } from "./creator.js";
-import { getDataFromStorage, removeNote } from "./data-handler.js";
+import { findNote, getDataFromStorage, removeNote } from "./data-handler.js";
 import {
     dateParams,
     delitIconParams,
@@ -72,9 +72,9 @@ const createList = () => {
         const isEditBtn = e.target.closest("[data-edit]");
 
         if (isRemoveButton) {
-            const noteItem = isRemoveButton.closest("li");
-            const currentId = noteItem.id;
-            removeNote(currentId);
+            const noteItemId = isRemoveButton.closest("li").id;
+
+            removeNote(findNote(noteItemId));
 
             render(getDataFromStorage());
         } else if (isEditBtn) {
