@@ -18,8 +18,7 @@ import { handlerData, getDataFromStorage } from "../utilities/data-handler.js";
 import render from "../utilities/render.js";
 
 const btnAddNote = document.querySelector("#btnAddNote");
-
-const initialModal = (status) => {
+const initialModal = (status, objNote = null) => {
     const fadeBlock = creator(fadeBlockParams);
     document.body.append(fadeBlock);
 
@@ -29,8 +28,15 @@ const initialModal = (status) => {
     const wrapperHeaderForm = creator(wrapperHeaderFormParams);
     form.append(wrapperHeaderForm);
 
-    const titleInput = creator(titleInputParams);
-    wrapperHeaderForm.append(titleInput);
+    if (objNote) {
+        const titleInputParamsEdit = titleInputParams;
+        titleInputParamsEdit.attr.value = objNote.title;
+        const titleInput = creator(titleInputParamsEdit);
+        wrapperHeaderForm.append(titleInput);
+    } else {
+        const titleInput = creator(titleInputParams);
+        wrapperHeaderForm.append(titleInput);
+    }
 
     const wrapperFakeCheckbox = creator(wrapperFakeCheckboxParams);
     wrapperHeaderForm.append(wrapperFakeCheckbox);
@@ -90,8 +96,3 @@ btnAddNote.addEventListener("click", () => {
 });
 
 export default initialModal;
-
-//1. Получить данные заметки, которую нужно изменить
-//2. Отобразить данные в модальном окне
-//3. При нажатие на кнопку edit снова находить нужную заметку и менять в ней данные
-//4. Перезапуск render

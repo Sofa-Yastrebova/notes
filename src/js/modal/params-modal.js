@@ -94,6 +94,7 @@ const titleInputParams = {
         placeholder: "Title",
         id: "inputTitle",
         name: "input-title",
+        value: "",
     },
 };
 
@@ -152,6 +153,7 @@ const textareaParams = {
         id: "textareaModal",
         name: "message",
     },
+    text: "",
 };
 
 const wrapperActionParams = {

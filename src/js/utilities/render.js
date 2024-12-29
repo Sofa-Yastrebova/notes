@@ -70,16 +70,15 @@ const createList = () => {
     listNotes.addEventListener("click", (e) => {
         const isRemoveButton = e.target.closest("[data-remove]");
         const isEditBtn = e.target.closest("[data-edit]");
+        const noteItemId = e.target.closest("li").id;
 
         if (isRemoveButton) {
-            const noteItemId = isRemoveButton.closest("li").id;
-
             removeNote(findNote(noteItemId));
-
             render(getDataFromStorage());
         } else if (isEditBtn) {
             const statusEdit = true;
-            initialModal(statusEdit);
+            const currentEditNote = findNote(noteItemId);
+            initialModal(statusEdit, currentEditNote);
         }
     });
 

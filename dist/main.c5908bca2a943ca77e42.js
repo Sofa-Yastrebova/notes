@@ -9180,19 +9180,17 @@ const decreaseId = (array, indexCurrentNote, status) => {
     array[i].id = newId;
   }
 };
-
-// Декомпозировать findNote и removeNote 
-// removeNote должна принимать объект из findnote и удалять заметку
-
 const removeNote = objNote => {
   const [array, status] = objNote.id.endsWith("favorite") ? [notes.favorites, "favorite"] : [notes.regulary, "regulary"];
   array.forEach(note => {
     if (objNote.id === note.id) {
       const indexCurrentNote = array.indexOf(note);
+      console.log(indexCurrentNote);
       array.splice(indexCurrentNote, 1);
       decreaseId(array, indexCurrentNote, status);
     }
   });
+  setDataToStorage(notes);
 };
 const findNote = id => {
   const isFavoriteId = id.endsWith("favorite");
@@ -9331,10 +9329,12 @@ const createList = () => {
     const isRemoveButton = e.target.closest("[data-remove]");
     const isEditBtn = e.target.closest("[data-edit]");
     if (isRemoveButton) {
-      const noteItem = isRemoveButton.closest("li");
-      removeNote(findNote());
+      const noteItemId = isRemoveButton.closest("li").id;
+      removeNote(findNote(noteItemId));
       render(getDataFromStorage());
     } else if (isEditBtn) {
+      //1. в параметры инпут добавить свойство value со значением пустой строки
+      // 2.Передать данные из findNote в модалку вторым аргументом
       const statusEdit = true;
       modal(statusEdit);
     }
@@ -9362,6 +9362,8 @@ const render = data => {
 
 
 const btnAddNote = document.querySelector("#btnAddNote");
+
+// добавить необязательный параметр в initialModal(объект заметки)
 const initialModal = status => {
   const fadeBlock = creator(fadeBlockParams);
   document.body.append(fadeBlock);
@@ -9369,6 +9371,9 @@ const initialModal = status => {
   document.body.append(form);
   const wrapperHeaderForm = creator(wrapperHeaderFormParams);
   form.append(wrapperHeaderForm);
+
+  // перед передачей параметра в креаторе изменить параметр с помощью объекта из findNote
+
   const titleInput = creator(titleInputParams);
   wrapperHeaderForm.append(titleInput);
   const wrapperFakeCheckbox = creator(wrapperFakeCheckboxParams);
@@ -9412,11 +9417,6 @@ btnAddNote.addEventListener("click", () => {
   initialModal(statusAdd);
 });
 /* harmony default export */ const modal = (initialModal);
-
-//1. Получить данные заметки, которую нужно изменить
-//2. Отобразить данные в модальном окне
-//3. При нажатие на кнопку edit снова находить нужную заметку и менять в ней данные
-//4. Перезапуск render
 ;// CONCATENATED MODULE: ./src/index-entry.js
 
 
