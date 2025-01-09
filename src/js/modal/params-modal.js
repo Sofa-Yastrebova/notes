@@ -55,6 +55,9 @@ const formParams = {
         "py-[30px]",
         "px-[36px]",
     ],
+    attr: {
+        id: "form",
+    },
 };
 
 const fadeBlockParams = {
@@ -89,6 +92,9 @@ const titleInputParams = {
     classList: ["max-w-[330px]", "w-full", "block", "outline-none", "p-1"],
     attr: {
         placeholder: "Title",
+        id: "inputTitle",
+        name: "input-title",
+        value: "",
     },
 };
 
@@ -101,6 +107,7 @@ const inputCheckboxParams = {
     tagName: "input",
     attr: {
         type: "checkbox",
+        name: "checkBox",
     },
     classList: ["-z-1", "absolute", "opacity-0", "w-0", "h-0"],
 };
@@ -144,7 +151,9 @@ const textareaParams = {
     attr: {
         placeholder: "Your note",
         id: "textareaModal",
+        name: "message",
     },
+    text: "",
 };
 
 const wrapperActionParams = {

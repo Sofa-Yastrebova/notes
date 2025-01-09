@@ -9071,43 +9071,31 @@ const wrapperActionParams = {
 ;// CONCATENATED MODULE: ./src/js/utilities/creator.js
 const creator = elementParams => {
   const element = document.createElement(elementParams.tagName);
-  addTextContent(element, elementParams.text);
-  addAttr(element, elementParams.attr);
-  addClassList(element, elementParams.classList);
-
-  // if (elementParams.attr) {
-  //     for (const key in elementParams.attr) {
-  //         element.setAttribute(key, elementParams.attr[key]);
-  //     }
-  // }
-
-  // if (elementParams.classList) {
-  //     element.classList.add(...elementParams.classList);
-  // }
+  const text = elementParams.text;
+  const attr = elementParams.attr;
+  const classList = elementParams.classList;
+  addTextContent(element, text);
+  addAttr(element, attr);
+  addClassList(element, classList);
   return element;
 };
 const addTextContent = (currentElement, text) => {
-  if (text) {
+  if (currentElement && text) {
     currentElement.textContent = text;
   }
 };
-const addClassList = (currentElement, classListr) => {
-  if (classList) {
-    currentElement.classList = classList;
+const addClassList = (currentElement, classList) => {
+  if (currentElement && classList) {
+    currentElement.classList.add(...classList);
   }
 };
 const addAttr = (currentElement, attr) => {
-  if (attr) {
-    currentElement.setAttribute = attr;
+  if (currentElement && attr) {
+    for (const key in attr) {
+      currentElement.setAttribute(key, attr[key]);
+    }
   }
 };
-
-// const addClassList = (currentElement, classList) => {
-//     if (currentElement.classList, classList) {
-//         element.classList.add(...elementParams.classList);
-//     }
-// }
-
 
 ;// CONCATENATED MODULE: ./src/js/modal/modal.js
 
