@@ -18,6 +18,7 @@ import { handlerData, getDataFromStorage } from "../utilities/data-handler.js";
 import render from "../utilities/render.js";
 
 const btnAddNote = document.querySelector("#btnAddNote");
+
 const initialModal = (status, objNote = null) => {
     const fadeBlock = creator(fadeBlockParams);
     document.body.append(fadeBlock);
@@ -47,8 +48,19 @@ const initialModal = (status, objNote = null) => {
     const spanCheckbox = creator(spanCheckboxParams);
     wrapperFakeCheckbox.append(spanCheckbox);
 
-    const textarea = creator(textareaParams);
-    form.append(textarea);
+    if (objNote) {
+        console.log(objNote);
+
+        const textareaParamsEdit = textareaParams;
+        textareaParamsEdit.text = objNote.text;
+        console.log(textareaParamsEdit);
+
+        const textarea = creator(textareaParamsEdit);
+        form.append(textarea);
+    } else {
+        const textarea = creator(textareaParams);
+        form.append(textarea);
+    }
 
     const wrapperAction = creator(wrapperActionParams);
     form.append(wrapperAction);

@@ -46,6 +46,8 @@ const setDataToArray = (newNote) => {
 };
 
 const handlerData = (form) => {
+    console.log(form);
+
     const formData = new FormData(form);
     const currentDate = new Date();
     let isTitle = formData.get("input-title");
@@ -77,6 +79,7 @@ const handlerData = (form) => {
     setDataToArray(newNote);
     setDataToStorage(notes);
 };
+
 const decreaseId = (array, indexCurrentNote, status) => {
     for (let i = indexCurrentNote; i < array.length; i++) {
         const oldIdNumber = parseInt(array[i].id);
