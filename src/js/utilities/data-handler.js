@@ -45,11 +45,22 @@ const setDataToArray = (newNote) => {
     }
 };
 
+const setDate = () => {
+    const currentDate = new Date();
+    const dateString = currentDate.toLocaleString("ru-RU", {
+        day: "numeric",
+        month: "numeric",
+        year: "numeric",
+        hour: "2-digit",
+        minute: "2-digit",
+    });
+    return dateString;
+};
+
 const handlerData = (form) => {
     console.log(form);
 
     const formData = new FormData(form);
-    const currentDate = new Date();
     let isTitle = formData.get("input-title");
     let isText = formData.get("message");
     let isFavorite = formData.get("checkBox") ? true : false;
@@ -66,13 +77,7 @@ const handlerData = (form) => {
         title: isTitle,
         text: isText,
         favorite: formData.get("checkBox"),
-        date: currentDate.toLocaleString("ru-RU", {
-            day: "numeric",
-            month: "numeric",
-            year: "numeric",
-            hour: "2-digit",
-            minute: "2-digit",
-        }),
+        date: setDate(),
         id: setId(isFavorite),
     };
 

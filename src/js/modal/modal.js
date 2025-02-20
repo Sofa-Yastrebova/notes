@@ -42,8 +42,15 @@ const initialModal = (status, objNote = null) => {
     const wrapperFakeCheckbox = creator(wrapperFakeCheckboxParams);
     wrapperHeaderForm.append(wrapperFakeCheckbox);
 
-    const inputCheckbox = creator(inputCheckboxParams);
-    wrapperFakeCheckbox.append(inputCheckbox);
+    if (objNote) {
+        const inputCheckboxParamsEdit = inputCheckboxParams;
+        inputCheckboxParamsEdit.attr.checked = objNote.favorite;
+        const inputCheckboxEdit = creator(inputCheckboxParams);
+        wrapperFakeCheckbox.append(inputCheckboxEdit);
+    } else {
+        const inputCheckbox = creator(inputCheckboxParams);
+        wrapperFakeCheckbox.append(inputCheckbox);
+    }
 
     const spanCheckbox = creator(spanCheckboxParams);
     wrapperFakeCheckbox.append(spanCheckbox);
@@ -108,3 +115,5 @@ btnAddNote.addEventListener("click", () => {
 });
 
 export default initialModal;
+
+//поработать над иззминением заметки
