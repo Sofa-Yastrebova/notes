@@ -19,12 +19,16 @@ import render from "../utilities/render.js";
 
 const btnAddNote = document.querySelector("#btnAddNote");
 
-const initialModal = (status, objNote = null) => {
+const initialModal = (status, objNote = {}) => {
     const fadeBlock = creator(fadeBlockParams);
     document.body.append(fadeBlock);
 
     const form = creator(formParams);
     document.body.append(form);
+
+    if (objNote.id) {
+        form.setAttribute("data-noteId", objNote.id);
+    }
 
     const wrapperHeaderForm = creator(wrapperHeaderFormParams);
     form.append(wrapperHeaderForm);
@@ -56,11 +60,8 @@ const initialModal = (status, objNote = null) => {
     wrapperFakeCheckbox.append(spanCheckbox);
 
     if (objNote) {
-        console.log(objNote);
-
         const textareaParamsEdit = textareaParams;
         textareaParamsEdit.text = objNote.text;
-        console.log(textareaParamsEdit);
 
         const textarea = creator(textareaParamsEdit);
         form.append(textarea);
@@ -115,5 +116,3 @@ btnAddNote.addEventListener("click", () => {
 });
 
 export default initialModal;
-
-//поработать над иззминением заметки

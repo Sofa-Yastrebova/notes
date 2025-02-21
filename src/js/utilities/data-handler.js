@@ -57,9 +57,9 @@ const setDate = () => {
     return dateString;
 };
 
-const handlerData = (form) => {
-    console.log(form);
+// в зависимости от наличия id в форме запукать либо изменение, либо добавление.
 
+const handlerData = (form) => {
     const formData = new FormData(form);
     let isTitle = formData.get("input-title");
     let isText = formData.get("message");
@@ -72,6 +72,9 @@ const handlerData = (form) => {
     if (isText.length < 1) {
         isText = "empty";
     }
+
+    // const currentId = form.dataset.noteId;
+    // создать функцию ченджноут
 
     const newNote = {
         title: isTitle,
