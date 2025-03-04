@@ -78,6 +78,8 @@ const createList = () => {
         } else if (isEditBtn) {
             const statusEdit = true;
             const currentEditNote = findNote(noteItemId);
+            console.log(currentEditNote);
+
             initialModal(statusEdit, currentEditNote);
         }
     });

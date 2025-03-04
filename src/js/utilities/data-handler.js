@@ -57,7 +57,15 @@ const setDate = () => {
     return dateString;
 };
 
-// в зависимости от наличия id в форме запукать либо изменение, либо добавление.
+const changeNote = (objNote, currentId) => {
+    const oldNote = findNote(currentId);
+    if (oldNote) {
+        const isTitleChange = oldNote.title !== objNote.title;
+        const isTextareaChange = oldNote.text !== objNote.text;
+        const isCheckboxChange = oldNote.favorite !== objNote.favorite;
+        console.log(isCheckboxChange, isTextareaChange, isTitleChange);
+    }
+};
 
 const handlerData = (form) => {
     const formData = new FormData(form);
@@ -73,8 +81,7 @@ const handlerData = (form) => {
         isText = "empty";
     }
 
-    // const currentId = form.dataset.noteId;
-    // создать функцию ченджноут
+    const currentId = form.dataset.noteid;
 
     const newNote = {
         title: isTitle,
@@ -83,6 +90,12 @@ const handlerData = (form) => {
         date: setDate(),
         id: setId(isFavorite),
     };
+
+    if (currentId) {
+        changeNote(newNote, currentId);
+    } else {
+        // пртсвоить айди и дату
+    }
 
     setDataToArray(newNote);
     setDataToStorage(notes);
