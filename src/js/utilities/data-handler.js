@@ -63,7 +63,16 @@ const changeNote = (objNote, currentId) => {
         const isTitleChange = oldNote.title !== objNote.title;
         const isTextareaChange = oldNote.text !== objNote.text;
         const isCheckboxChange = oldNote.favorite !== objNote.favorite;
-        console.log(isCheckboxChange, isTextareaChange, isTitleChange);
+
+        if (isCheckboxChange || isTextareaChange || isTitleChange) {
+            objNote.isChange = true;
+            removeNote(oldNote);
+            objNote.id = setId(objNote.favorite);
+            objNote.date = setDate();
+            setDataToArray(objNote);
+            setDataToStorage(notes);
+            return;
+        }
     }
 };
 
@@ -94,11 +103,14 @@ const handlerData = (form) => {
     if (currentId) {
         changeNote(newNote, currentId);
     } else {
-        // пртсвоить айди и дату
+        newNote.id = setId(newNote.favorite);
+        newNote.date = setDate();
+        setDataToArray(newNote);
+        setDataToStorage(notes);
     }
 
-    setDataToArray(newNote);
-    setDataToStorage(notes);
+    // setDataToArray(newNote);
+    // setDataToStorage(notes);
 };
 
 const decreaseId = (array, indexCurrentNote, status) => {
