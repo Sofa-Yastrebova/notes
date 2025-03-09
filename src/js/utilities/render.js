@@ -40,7 +40,8 @@ const creatorNote = (arrayNotes) => {
 
         titleNote.innerText = note.title;
         textNote.innerText = note.text;
-        date.innerText = `Created ${note.date.slice(0, 10)} at ${note.date.slice(12)}`;
+        const isChanged = note.isChange ? "Changed" : "Created";
+        date.innerText = `${isChanged} ${note.date.slice(0, 10)} at ${note.date.slice(12)}`;
         listItemElement.id = note.id;
         listItemElement.append(notesElement);
         notesElement.append(topPartNote);
