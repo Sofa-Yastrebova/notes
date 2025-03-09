@@ -33,7 +33,7 @@ const initialModal = (status, objNote = {}) => {
     const wrapperHeaderForm = creator(wrapperHeaderFormParams);
     form.append(wrapperHeaderForm);
 
-    if (objNote) {
+    if (objNote.title) {
         const titleInputParamsEdit = titleInputParams;
         titleInputParamsEdit.attr.value = objNote.title;
         const titleInput = creator(titleInputParamsEdit);
@@ -46,7 +46,7 @@ const initialModal = (status, objNote = {}) => {
     const wrapperFakeCheckbox = creator(wrapperFakeCheckboxParams);
     wrapperHeaderForm.append(wrapperFakeCheckbox);
 
-    if (objNote) {
+    if (objNote.favorite) {
         const inputCheckboxParamsEdit = inputCheckboxParams;
         inputCheckboxParamsEdit.attr.checked = objNote.favorite;
         const inputCheckboxEdit = creator(inputCheckboxParams);
@@ -59,7 +59,7 @@ const initialModal = (status, objNote = {}) => {
     const spanCheckbox = creator(spanCheckboxParams);
     wrapperFakeCheckbox.append(spanCheckbox);
 
-    if (objNote) {
+    if (objNote.text) {
         const textareaParamsEdit = textareaParams;
         textareaParamsEdit.text = objNote.text;
 
