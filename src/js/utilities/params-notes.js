@@ -64,6 +64,9 @@ const favouriteIconParams = {
         "w-6",
         "h-6",
     ],
+    attr: {
+        "data-checkbox": "",
+    },
 };
 
 const favouriteGoldenIconParams = {
@@ -75,6 +78,9 @@ const favouriteGoldenIconParams = {
         "w-6",
         "h-6",
     ],
+    attr: {
+        "data-checkbox": "",
+    },
 };
 
 const editIconParams = {

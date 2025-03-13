@@ -96,21 +96,18 @@ const handlerData = (form) => {
         title: isTitle,
         text: isText,
         favorite: formData.get("checkBox"),
-        date: setDate(),
-        id: setId(isFavorite),
+        // date: setDate(),
+        // id: setId(isFavorite),
     };
 
     if (currentId) {
         changeNote(newNote, currentId);
     } else {
-        newNote.id = setId(newNote.favorite);
+        newNote.id = setId(isFavorite);
         newNote.date = setDate();
         setDataToArray(newNote);
         setDataToStorage(notes);
     }
-
-    // setDataToArray(newNote);
-    // setDataToStorage(notes);
 };
 
 const decreaseId = (array, indexCurrentNote, status) => {
@@ -130,7 +127,6 @@ const removeNote = (objNote) => {
     array.forEach((note) => {
         if (objNote.id === note.id) {
             const indexCurrentNote = array.indexOf(note);
-            console.log(indexCurrentNote);
 
             array.splice(indexCurrentNote, 1);
 
@@ -139,6 +135,18 @@ const removeNote = (objNote) => {
     });
 
     setDataToStorage(notes);
+};
+
+const changeStatus = (id) => {
+    const note = findNote(id);
+    if (!note.isChange) {
+        note.favorite ? (note.favorite = null) : (note.favorite = "on");
+        removeNote(note);
+        note.id = setId(note.favorite);
+        note.date = setDate();
+        setDataToArray(note);
+        setDataToStorage(notes);
+    }
 };
 
 const findNote = (id) => {
@@ -162,4 +170,4 @@ const findNote = (id) => {
     return currentNote;
 };
 
-export { handlerData, getDataFromStorage, removeNote, findNote };
+export { handlerData, getDataFromStorage, removeNote, findNote, changeStatus };

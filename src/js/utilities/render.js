@@ -1,6 +1,11 @@
 import initialModal from "../modal/modal.js";
 import { creator } from "./creator.js";
-import { findNote, getDataFromStorage, removeNote } from "./data-handler.js";
+import {
+    changeStatus,
+    findNote,
+    getDataFromStorage,
+    removeNote,
+} from "./data-handler.js";
 import {
     dateParams,
     delitIconParams,
@@ -42,6 +47,7 @@ const creatorNote = (arrayNotes) => {
         textNote.innerText = note.text;
         const isChanged = note.isChange ? "Changed" : "Created";
         date.innerText = `${isChanged} ${note.date.slice(0, 10)} at ${note.date.slice(12)}`;
+
         listItemElement.id = note.id;
         listItemElement.append(notesElement);
         notesElement.append(topPartNote);
@@ -71,6 +77,7 @@ const createList = () => {
     listNotes.addEventListener("click", (e) => {
         const isRemoveButton = e.target.closest("[data-remove]");
         const isEditBtn = e.target.closest("[data-edit]");
+        const isCheckbox = e.target.closest("[data-checkbox]");
         const noteItemId = e.target.closest("li").id;
 
         if (isRemoveButton) {
@@ -79,9 +86,10 @@ const createList = () => {
         } else if (isEditBtn) {
             const statusEdit = true;
             const currentEditNote = findNote(noteItemId);
-            console.log(currentEditNote);
-
             initialModal(statusEdit, currentEditNote);
+        } else if (isCheckbox) {
+            changeStatus(noteItemId);
+            render();
         }
     });
 
@@ -91,6 +99,8 @@ const createList = () => {
 const listElement = createList();
 
 const render = (data) => {
+    // починить рендер
+
     listElement.innerHTML = "";
     const wrapperNotes = new DocumentFragment();
 
