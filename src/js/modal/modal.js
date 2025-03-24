@@ -33,42 +33,32 @@ const initialModal = (status, objNote = {}) => {
     const wrapperHeaderForm = creator(wrapperHeaderFormParams);
     form.append(wrapperHeaderForm);
 
-    if (objNote.title) {
-        const titleInputParamsEdit = titleInputParams;
-        titleInputParamsEdit.attr.value = objNote.title;
-        const titleInput = creator(titleInputParamsEdit);
-        wrapperHeaderForm.append(titleInput);
-    } else {
-        const titleInput = creator(titleInputParams);
-        wrapperHeaderForm.append(titleInput);
-    }
+    objNote.title
+        ? (titleInputParams.attr.value = objNote.title)
+        : (titleInputParams.attr.value = "");
+
+    const titleInput = creator(titleInputParams);
+    wrapperHeaderForm.append(titleInput);
 
     const wrapperFakeCheckbox = creator(wrapperFakeCheckboxParams);
     wrapperHeaderForm.append(wrapperFakeCheckbox);
 
-    if (objNote.favorite) {
-        const inputCheckboxParamsEdit = inputCheckboxParams;
-        inputCheckboxParamsEdit.attr.checked = objNote.favorite;
-        const inputCheckboxEdit = creator(inputCheckboxParams);
-        wrapperFakeCheckbox.append(inputCheckboxEdit);
-    } else {
-        const inputCheckbox = creator(inputCheckboxParams);
-        wrapperFakeCheckbox.append(inputCheckbox);
-    }
+    objNote.favorite
+        ? (inputCheckboxParams.attr.checked = "checked")
+        : delete inputCheckboxParams.attr.checked;
+
+    const inputCheckboxEdit = creator(inputCheckboxParams);
+    wrapperFakeCheckbox.append(inputCheckboxEdit);
 
     const spanCheckbox = creator(spanCheckboxParams);
     wrapperFakeCheckbox.append(spanCheckbox);
 
-    if (objNote.text) {
-        const textareaParamsEdit = textareaParams;
-        textareaParamsEdit.text = objNote.text;
+    objNote.text
+        ? (textareaParams.text = objNote.text)
+        : (textareaParams.text = "");
 
-        const textarea = creator(textareaParamsEdit);
-        form.append(textarea);
-    } else {
-        const textarea = creator(textareaParams);
-        form.append(textarea);
-    }
+    const textarea = creator(textareaParams);
+    form.append(textarea);
 
     const wrapperAction = creator(wrapperActionParams);
     form.append(wrapperAction);
