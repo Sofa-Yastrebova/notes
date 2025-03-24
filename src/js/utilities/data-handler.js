@@ -139,14 +139,13 @@ const removeNote = (objNote) => {
 
 const changeStatus = (id) => {
     const note = findNote(id);
-    if (!note.isChange) {
-        note.favorite ? (note.favorite = null) : (note.favorite = "on");
-        removeNote(note);
-        note.id = setId(note.favorite);
-        note.date = setDate();
-        setDataToArray(note);
-        setDataToStorage(notes);
-    }
+    note.favorite ? (note.favorite = null) : (note.favorite = "on");
+    note.isChange = true;
+    removeNote(note);
+    note.id = setId(note.favorite);
+    note.date = setDate();
+    setDataToArray(note);
+    setDataToStorage(notes);
 };
 
 const findNote = (id) => {
@@ -170,4 +169,11 @@ const findNote = (id) => {
     return currentNote;
 };
 
-export { handlerData, getDataFromStorage, removeNote, findNote, changeStatus };
+export {
+    handlerData,
+    getDataFromStorage,
+    removeNote,
+    findNote,
+    changeStatus,
+    notes,
+};

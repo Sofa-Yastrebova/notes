@@ -5,6 +5,7 @@ import {
     findNote,
     getDataFromStorage,
     removeNote,
+    notes,
 } from "./data-handler.js";
 import {
     dateParams,
@@ -89,7 +90,8 @@ const createList = () => {
             initialModal(statusEdit, currentEditNote);
         } else if (isCheckbox) {
             changeStatus(noteItemId);
-            render();
+            console.log(isCheckbox);
+            render(notes);
         }
     });
 
@@ -103,6 +105,7 @@ const render = (data) => {
 
     listElement.innerHTML = "";
     const wrapperNotes = new DocumentFragment();
+    console.log(data);
 
     const notesElementFavorites = creatorNote(data.favorites);
     const notesElementRegulary = creatorNote(data.regulary);
