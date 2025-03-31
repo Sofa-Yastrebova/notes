@@ -17,7 +17,7 @@ import { creator } from "../utilities/creator.js";
 import { handlerData, getDataFromStorage } from "../utilities/data-handler.js";
 import render from "../utilities/render.js";
 
-const btnAddNote = document.querySelector("#btnAddNote");
+// const btnAddNote = document.querySelector("#btnAddNote");
 
 const initialModal = (status, objNote = {}) => {
     const fadeBlock = creator(fadeBlockParams);
@@ -100,9 +100,9 @@ const removeRenderModal = (formElement, fadeBlock) => {
     fadeBlock.remove();
 };
 
-btnAddNote.addEventListener("click", () => {
-    const statusAdd = false;
-    initialModal(statusAdd);
-});
+// btnAddNote.addEventListener("click", () => {
+//     const statusAdd = false;
+//     initialModal(statusAdd);
+// });
 
 export default initialModal;

@@ -70,9 +70,6 @@ const createList = () => {
 
     if (!listNotes) {
         listNotes = creator(listNotesParams);
-        const main = document.querySelector("#main");
-
-        main.append(listNotes);
     }
 
     listNotes.addEventListener("click", (e) => {
@@ -98,11 +95,9 @@ const createList = () => {
     return listNotes;
 };
 
-const listElement = createList();
-
 const render = (data) => {
     // починить рендер
-
+    const listElement = createList();
     listElement.innerHTML = "";
     const wrapperNotes = new DocumentFragment();
     console.log(data);
@@ -119,6 +114,7 @@ const render = (data) => {
     });
 
     listElement.append(wrapperNotes);
+    return listElement;
 };
 
 export default render;
