@@ -12,8 +12,6 @@ const nightModeBtn = () => {
 };
 
 const switchDarkMode = () => {
-    console.log(1);
-
     document.documentElement.classList.toggle("dark");
 };
 
