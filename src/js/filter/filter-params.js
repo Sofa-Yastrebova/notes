@@ -1,0 +1,40 @@
+const wrapperBtnsParams = {
+    tagName: "div",
+    classList: ["flex", "gap-6", "justify-center"],
+};
+
+const allNotesBtnParams = {
+    tagName: "button",
+    classList: [
+        "hover:opacity-75",
+        "font-bold",
+        "dark:bg-white",
+        "dark:text-cyan-600",
+        "bg-cyan-600",
+        "capitalize",
+        "min-w-44",
+        "py-1",
+        "rounded-lg",
+        "text-white",
+    ],
+    text: "all notes",
+};
+
+const favoritesBtnParams = {
+    tagName: "button",
+    classList: [
+        "hover:opacity-75",
+        "font-bold",
+        "dark:bg-white",
+        "dark:text-cyan-600",
+        "bg-cyan-600",
+        "capitalize",
+        "min-w-44",
+        "py-1",
+        "rounded-lg",
+        "text-white",
+    ],
+    text: "favorites",
+};
+
+export { wrapperBtnsParams, allNotesBtnParams, favoritesBtnParams };

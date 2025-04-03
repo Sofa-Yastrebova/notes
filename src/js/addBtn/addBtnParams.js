@@ -19,6 +19,8 @@ const addBtnParams = {
         "text-cyan-600",
         "font-bold",
         "min-w-24",
+        "mx-auto",
+        "my-[40px]",
     ],
     attr: {
         id: "btnAddNote",
@@ -27,7 +29,7 @@ const addBtnParams = {
 
 const addNoteTitleParams = {
     tagName: "span",
-    classList: [],
+    classList: ["text-xl"],
     text: "add note",
 };
 
