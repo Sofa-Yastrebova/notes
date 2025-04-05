@@ -15,4 +15,4 @@ const switchDarkMode = () => {
     document.documentElement.classList.toggle("dark");
 };
 
-export default nightModeBtn;
+export { nightModeBtn };

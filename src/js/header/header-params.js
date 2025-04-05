@@ -26,7 +26,7 @@ const headerTitleParams = {
 
 const wrapperNightModeParams = {
     tagName: "div",
-    classList: ["flex"],
+    classList: ["flex", "gap-4"],
 };
 
 export { headerElementParams, headerTitleParams, wrapperNightModeParams };

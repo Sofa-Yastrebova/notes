@@ -37,4 +37,14 @@ const favoritesBtnParams = {
     text: "favorites",
 };
 
-export { wrapperBtnsParams, allNotesBtnParams, favoritesBtnParams };
+const filterBtnParams = {
+    tagName: "input",
+    classList: [],
+};
+
+export {
+    wrapperBtnsParams,
+    allNotesBtnParams,
+    favoritesBtnParams,
+    filterBtnParams,
+};
