@@ -96,11 +96,9 @@ const createList = () => {
 };
 
 const render = (data) => {
-    // починить рендер
     const listElement = createList();
     listElement.innerHTML = "";
     const wrapperNotes = new DocumentFragment();
-    console.log(data);
 
     const notesElementFavorites = creatorNote(data.favorites);
     const notesElementRegulary = creatorNote(data.regulary);

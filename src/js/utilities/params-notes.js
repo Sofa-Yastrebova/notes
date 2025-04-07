@@ -8,7 +8,9 @@ const listNotesParams = {
 
 const liParams = {
     tagName: "li",
-    attr: {},
+    attr: {
+        "data-note": "",
+    },
 };
 
 const noteParams = {
@@ -38,6 +40,9 @@ const wrapperTitleAndDateParams = {
 const titleNoteParams = {
     tagName: "span",
     classList: ["text-xl", "text-[#10798D]"],
+    attr: {
+        "data-title": "",
+    },
 };
 
 const dateParams = {
@@ -48,6 +53,9 @@ const dateParams = {
 const textParams = {
     tagName: "p",
     classList: ["text-base", "text-[#393E3F]", "truncate"],
+    attr: {
+        "data-text": "",
+    },
 };
 
 const wrapperButtonControlParams = {
