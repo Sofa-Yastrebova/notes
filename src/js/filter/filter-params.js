@@ -1,6 +1,6 @@
 const wrapperBtnsParams = {
     tagName: "div",
-    classList: ["flex", "gap-6", "justify-center"],
+    classList: ["flex", "gap-6", "justify-center", "pt-12", "pb-8"],
 };
 
 const allNotesBtnParams = {

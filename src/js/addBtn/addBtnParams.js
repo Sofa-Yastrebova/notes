@@ -20,7 +20,7 @@ const addBtnParams = {
         "font-bold",
         "min-w-24",
         "mx-auto",
-        "my-[40px]",
+        "mb-[30px]",
     ],
     attr: {
         id: "btnAddNote",
