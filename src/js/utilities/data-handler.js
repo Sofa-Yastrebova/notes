@@ -120,6 +120,8 @@ const decreaseId = (array, indexCurrentNote, status) => {
 };
 
 const removeNote = (objNote) => {
+    console.log(objNote);
+
     const [array, status] = objNote.id.endsWith("favorite")
         ? [notes.favorites, "favorite"]
         : [notes.regulary, "regulary"];

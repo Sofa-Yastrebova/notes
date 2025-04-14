@@ -1,5 +1,5 @@
-import { creator } from "../utilities/creator";
-import { nightModeIconParams, nightModeParams } from "./nightMode-params";
+import { creator } from "../utilities/creator.js";
+import { nightModeIconParams, nightModeParams } from "./nightMode-params.js";
 
 const nightModeBtn = () => {
     const nightModeBtn = creator(nightModeParams);

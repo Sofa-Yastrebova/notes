@@ -15,7 +15,7 @@ import {
 
 import { creator } from "../utilities/creator.js";
 import { handlerData, getDataFromStorage } from "../utilities/data-handler.js";
-import render from "../utilities/render.js";
+import { createList, clearRender } from "../utilities/render.js";
 
 const initialModal = (status, objNote = {}) => {
     const fadeBlock = creator(fadeBlockParams);
@@ -82,7 +82,9 @@ const initialModal = (status, objNote = {}) => {
         e.preventDefault();
         handlerData(form);
         removeRenderModal(form, fadeBlock);
-        render(getDataFromStorage());
+        clearRender();
+        createList(getDataFromStorage().favorites);
+        createList(getDataFromStorage().regulary);
     });
 
     buttonCancel.addEventListener("click", () =>

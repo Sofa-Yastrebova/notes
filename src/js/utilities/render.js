@@ -5,7 +5,6 @@ import {
     findNote,
     getDataFromStorage,
     removeNote,
-    notes,
 } from "./data-handler.js";
 import {
     dateParams,
@@ -65,54 +64,50 @@ const creatorNote = (arrayNotes) => {
     return listElementsNotes;
 };
 
-const createList = () => {
+const createList = (array) => {
     let listNotes = document.querySelector("#listNotes");
-
     if (!listNotes) {
         listNotes = creator(listNotesParams);
+        listNotes.addEventListener("click", (e) => dispatchNote(e));
     }
 
-    listNotes.addEventListener("click", (e) => {
-        const isRemoveButton = e.target.closest("[data-remove]");
-        const isEditBtn = e.target.closest("[data-edit]");
-        const isCheckbox = e.target.closest("[data-checkbox]");
-        const noteItemId = e.target.closest("li").id;
+    const wrapperNotes = new DocumentFragment();
+    const notesElement = creatorNote(array);
 
-        if (isRemoveButton) {
-            removeNote(findNote(noteItemId));
-            render(getDataFromStorage());
-        } else if (isEditBtn) {
-            const statusEdit = true;
-            const currentEditNote = findNote(noteItemId);
-            initialModal(statusEdit, currentEditNote);
-        } else if (isCheckbox) {
-            changeStatus(noteItemId);
-            console.log(isCheckbox);
-            render(notes);
-        }
+    notesElement.forEach((element) => {
+        wrapperNotes.prepend(element);
     });
 
+    listNotes.append(wrapperNotes);
     return listNotes;
 };
 
-const render = (data) => {
-    const listElement = createList();
-    listElement.innerHTML = "";
-    const wrapperNotes = new DocumentFragment();
+const dispatchNote = (e) => {
+    const isRemoveButton = e.target.closest("[data-remove]");
+    const isEditBtn = e.target.closest("[data-edit]");
+    const isCheckbox = e.target.closest("[data-checkbox]");
+    const noteItemId = e.target.closest("li").id;
 
-    const notesElementFavorites = creatorNote(data.favorites);
-    const notesElementRegulary = creatorNote(data.regulary);
+    if (isRemoveButton) {
+        removeNote(findNote(noteItemId));
+        clearRender();
+        createList(getDataFromStorage().favorites);
+        createList(getDataFromStorage().regulary);
+    } else if (isEditBtn) {
+        const statusEdit = true;
+        const currentEditNote = findNote(noteItemId);
+        initialModal(statusEdit, currentEditNote);
+    } else if (isCheckbox) {
+        changeStatus(noteItemId);
+        clearRender();
+        createList(getDataFromStorage().favorites);
+        createList(getDataFromStorage().regulary);
+    }
+};
+// исправить баг удаления заметк после декомпозитции
 
-    notesElementRegulary.forEach((element) => {
-        wrapperNotes.prepend(element);
-    });
-
-    notesElementFavorites.forEach((element) => {
-        wrapperNotes.prepend(element);
-    });
-
-    listElement.append(wrapperNotes);
-    return listElement;
+const clearRender = () => {
+    document.querySelector("#listNotes").innerHTML = "";
 };
 
-export default render;
+export { createList, clearRender };

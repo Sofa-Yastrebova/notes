@@ -39,7 +39,7 @@ const wrapperTitleAndDateParams = {
 
 const titleNoteParams = {
     tagName: "span",
-    classList: ["text-xl", "text-[#10798D]"],
+    classList: ["text-xl", "text-[#10798D]", "dark:text-cyan-600"],
     attr: {
         "data-title": "",
     },
@@ -52,7 +52,7 @@ const dateParams = {
 
 const textParams = {
     tagName: "p",
-    classList: ["text-base", "text-[#393E3F]", "truncate"],
+    classList: ["text-base", "text-[#393E3F]", "truncate", "dark:text-[#fff]"],
     attr: {
         "data-text": "",
     },
@@ -66,7 +66,8 @@ const wrapperButtonControlParams = {
 const favouriteIconParams = {
     tagName: "button",
     classList: [
-        "bg-[url('./img/starBlack.svg')]",
+        "bg-[url('/starBlack.svg')]",
+        "dark:bg-[url('/starBlack-dark.svg')]",
         "bg-cover",
         "bg-no-repeat",
         "w-6",
@@ -80,7 +81,7 @@ const favouriteIconParams = {
 const favouriteGoldenIconParams = {
     tagName: "button",
     classList: [
-        "bg-[url('./img/starGold-btn.svg')]",
+        "bg-[url('/starGold-btn.svg')]",
         "bg-cover",
         "bg-no-repeat",
         "w-6",
@@ -94,7 +95,8 @@ const favouriteGoldenIconParams = {
 const editIconParams = {
     tagName: "button",
     classList: [
-        "bg-[url('./img/edit-btn.svg')]",
+        "bg-[url('/edit-btn.svg')]",
+        "dark:bg-[url('/edit-btn-dark.svg')]",
         "bg-cover",
         "bg-no-repeat",
         "w-6",
@@ -107,7 +109,8 @@ const editIconParams = {
 const delitIconParams = {
     tagName: "button",
     classList: [
-        "bg-[url('./img/trash-btn.svg')]",
+        "bg-[url('/trash-btn.svg')]",
+        "dark:bg-[url('/trash-btn-dark.svg')]",
         "bg-cover",
         "bg-no-repeat",
         "w-6",

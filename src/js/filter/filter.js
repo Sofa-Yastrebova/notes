@@ -11,7 +11,12 @@ const filter = () => {
     const wrapperBtns = creator(wrapperBtnsParams);
 
     wrapperBtns.append(allNotesBtn, favoritesBtn);
+    // wrapperBtns.addEventListener("click", (e) => switchFilter(e))
 
     return wrapperBtns;
 };
+
+// const switchFilter = (e) => {
+
+// }
 export default filter;

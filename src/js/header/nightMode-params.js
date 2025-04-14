@@ -19,14 +19,14 @@ const nightModeParams = {
 const nightModeIconParams = {
     tagName: "span",
     classList: [
-        "dark:bg-[url('./img/moonicon.svg')]",
+        "dark:bg-[url('/moonicon.svg')]",
         "block",
         "w-7",
         "h-7",
         "bg-contain",
         "bg-no-repeat",
         "bg-center",
-        "bg-[url('./img/sun-icon.svg')]",
+        "bg-[url('/sun-icon.svg')]",
     ],
 };
 

@@ -36,11 +36,11 @@ const addNoteTitleParams = {
 const addBtnIconParams = {
     tagName: "span",
     classList: [
-        "dark:bg-[url('./img/add-note-dark.svg')]",
+        "dark:bg-[url('/add-note-dark.svg')]",
         "block",
         "w-7",
         "h-7",
-        "bg-[url('./img/add-note.svg')]",
+        "bg-[url('/add-note.svg')]",
         "bg-contain",
         "bg-no-repeat",
         "bg-center",

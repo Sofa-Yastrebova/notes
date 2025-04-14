@@ -1,6 +1,6 @@
 import "./main.css";
 import "./js/modal/modal.js";
-import render from "./js/utilities/render.js";
+import { createList } from "./js/utilities/render.js";
 import { getDataFromStorage } from "./js/utilities/data-handler.js";
 import header from "./js/header/header.js";
 import addBtn from "./js/addBtn/addBtn.js";
@@ -11,8 +11,7 @@ const initialApp = () => {
     containerApp.append(header());
     containerApp.append(filter());
     containerApp.append(addBtn());
-    containerApp.append(render(getDataFromStorage()));
+    containerApp.append(createList(getDataFromStorage().favorites));
+    containerApp.append(createList(getDataFromStorage().regulary));
 };
 initialApp();
-
-// 2. Создать отальные элементы через жс

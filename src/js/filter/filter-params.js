@@ -8,8 +8,8 @@ const allNotesBtnParams = {
     classList: [
         "hover:opacity-75",
         "font-bold",
-        "dark:bg-white",
-        "dark:text-cyan-600",
+        "dark:bg-skay-400",
+        "dark:text-[#fff]",
         "bg-cyan-600",
         "capitalize",
         "min-w-44",
@@ -25,8 +25,8 @@ const favoritesBtnParams = {
     classList: [
         "hover:opacity-75",
         "font-bold",
-        "dark:bg-white",
-        "dark:text-cyan-600",
+        "dark:bg-sky-400",
+        "dark:text-[#fff]",
         "bg-cyan-600",
         "capitalize",
         "min-w-44",
