@@ -17,6 +17,9 @@ const allNotesBtnParams = {
         "rounded-lg",
         "text-white",
     ],
+    attr: {
+        "data-filter": "all",
+    },
     text: "all notes",
 };
 
@@ -34,6 +37,9 @@ const favoritesBtnParams = {
         "rounded-lg",
         "text-white",
     ],
+    attr: {
+        "data-filter": "favorite",
+    },
     text: "favorites",
 };
 
