@@ -1,6 +1,17 @@
 const listNotesParams = {
     tagName: "ul",
-    classList: ["mx-auto", "max-w-[916px]", "flex", "flex-col", "gap-y-4"],
+    classList: [
+        "mx-auto",
+        "max-w-[916px]",
+        "flex",
+        "flex-col",
+        "gap-y-4",
+        "px-4",
+        "max-h-[450px]",
+        "overflow-x-auto",
+        "scrollbar",
+        "w-[96%]",
+    ],
     attr: {
         id: "listNotes",
     },
@@ -27,19 +38,26 @@ const noteParams = {
 
 const topPartNoteParams = {
     tagName: "div",
-    classList: ["flex", "justify-between", "items-center"],
+    classList: ["flex", "justify-between", "items-center", "flex-wrap"],
     attr: {},
 };
 
 const wrapperTitleAndDateParams = {
     tagName: "div",
-    classList: ["flex", "gap-x-4", "items-center"],
+    classList: ["flex", "gap-x-4", "items-center", "flex-wrap"],
     attr: {},
 };
 
 const titleNoteParams = {
     tagName: "span",
-    classList: ["text-xl", "text-[#10798D]", "dark:text-cyan-600"],
+    classList: [
+        "text-xl",
+        "text-[#10798D]",
+        "dark:text-cyan-600",
+        "truncate",
+        "block",
+        "max-w-[300px]",
+    ],
     attr: {
         "data-title": "",
     },
@@ -47,7 +65,7 @@ const titleNoteParams = {
 
 const dateParams = {
     tagName: "span",
-    classList: ["text-sm", "text-[#ACACAC]"],
+    classList: ["text-sm", "text-[#ACACAC]", "shrink-0"],
 };
 
 const textParams = {
@@ -136,3 +154,5 @@ export {
     editIconParams,
     delitIconParams,
 };
+
+// 1. завершить адаптив

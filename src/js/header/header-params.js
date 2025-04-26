@@ -9,6 +9,8 @@ const headerElementParams = {
         "flex",
         "justify-between",
         "py-4",
+        "px-4",
+        "items-center",
     ],
 };
 

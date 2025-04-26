@@ -1,6 +1,6 @@
 const wrapperBtnsParams = {
     tagName: "div",
-    classList: ["flex", "gap-6", "justify-center", "pt-12", "pb-8"],
+    classList: ["flex", "gap-6", "justify-center", "pt-12", "pb-8", "px-4"],
 };
 
 const allNotesBtnParams = {
@@ -12,7 +12,8 @@ const allNotesBtnParams = {
         "dark:text-[#fff]",
         "bg-cyan-600",
         "capitalize",
-        "min-w-44",
+        "xs:min-w-44",
+        "min-w-36",
         "py-1",
         "rounded-lg",
         "text-white",
@@ -32,7 +33,8 @@ const favoritesBtnParams = {
         "dark:text-[#fff]",
         "bg-cyan-600",
         "capitalize",
-        "min-w-44",
+        "xs:min-w-44",
+        "min-w-36",
         "py-1",
         "rounded-lg",
         "text-white",

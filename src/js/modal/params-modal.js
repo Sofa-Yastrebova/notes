@@ -8,6 +8,8 @@ const buttonAddParams = {
         "text-white",
         "min-w-[110px]",
         "hover:opacity-75",
+        "dark:bg-[#fff]",
+        "dark:text-cyan-600",
     ],
     text: "Add",
 };
@@ -22,6 +24,8 @@ const buttonEditParams = {
         "text-white",
         "min-w-[110px]",
         "hover:opacity-75",
+        "dark:bg-[#fff]",
+        "dark:text-cyan-600",
     ],
     text: "Edit",
 };
@@ -36,6 +40,7 @@ const buttonCancelParams = {
         "text-white",
         "min-w-[110px]",
         "hover:opacity-75",
+        "dark:bg-[#880000]",
     ],
     text: "Cancel",
 };
@@ -44,7 +49,7 @@ const formParams = {
     tagName: "form",
     classList: [
         "max-w-[915px]",
-        "w-full",
+        "w-[96%]",
         "bg-white",
         "rounded-md",
         "fixed",
@@ -54,6 +59,7 @@ const formParams = {
         "translate-x-1/2",
         "py-[30px]",
         "px-[36px]",
+        "dark:bg-[#036578]",
     ],
     attr: {
         id: "form",
@@ -64,13 +70,14 @@ const fadeBlockParams = {
     tagName: "div",
     classList: [
         "w-full",
-        "bg-[#D9D9D9]",
+        "bg-[#d9d9d9ac]",
+        "dark:bg-[#041a1ed7]",
         "h-screen",
-        "opacity-80",
         "fixed",
         "top-0",
         "left-0",
         "fixed",
+        "backdrop-blur-sm",
     ],
 };
 
@@ -84,12 +91,21 @@ const wrapperHeaderFormParams = {
         "border-cyan-600",
         "py-1",
         "mb-3",
+        "dark:border-white",
     ],
 };
 
 const titleInputParams = {
     tagName: "input",
-    classList: ["max-w-[330px]", "w-full", "block", "outline-none", "p-1"],
+    classList: [
+        "max-w-[330px]",
+        "w-full",
+        "block",
+        "outline-none",
+        "p-1",
+        "dark:text-white",
+        "dark:placeholder:text-white",
+    ],
     attr: {
         placeholder: "Title",
         id: "inputTitle",
@@ -120,18 +136,10 @@ const spanCheckboxParams = {
         "h-6",
         "relative",
         "favoriteButton",
-        "before:content-['']",
-        "before:block",
-        "before:w-5",
-        "before:h-5",
-        "before:bg-cover",
-        "before:bg-center",
-        "before:bg-no-repeat",
-        "before:absolute",
-        "before:bottom-1/2",
-        "before:right-1/2",
-        "before:translate-y-1/2",
-        "before:translate-x-1/2",
+        "bg-[url('/starBlack.svg')]",
+        "dark:bg-[url('/starBlack-dark.svg')]",
+        "bg-cover",
+        "bg-no-repeat",
     ],
 };
 
@@ -147,6 +155,10 @@ const textareaParams = {
         "shadow-black",
         "mb-2",
         "p-1",
+        "dark:text-white",
+        "dark:placeholder:text-white",
+        "dark:shadow-white",
+        "scrollbar",
     ],
     attr: {
         placeholder: "Your note",
