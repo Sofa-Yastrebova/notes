@@ -19,7 +19,7 @@ import {
     titleNoteParams,
     topPartNoteParams,
     wrapperButtonControlParams,
-    wrapperTitleAndDateParams,
+    wrapperDateAndButtonsParams,
 } from "./params-notes.js";
 
 const creatorNote = (arrayNotes) => {
@@ -27,7 +27,7 @@ const creatorNote = (arrayNotes) => {
         const listItemElement = creator(liParams);
         const notesElement = creator(noteParams);
         const topPartNote = creator(topPartNoteParams);
-        const wrapperTitleAndDate = creator(wrapperTitleAndDateParams);
+        const wrapperDateAndButtons = creator(wrapperDateAndButtonsParams);
         const wrapperButtonControl = creator(wrapperButtonControlParams);
         const titleNote = creator(titleNoteParams);
         const date = creator(dateParams);
@@ -52,12 +52,12 @@ const creatorNote = (arrayNotes) => {
         listItemElement.append(notesElement);
         notesElement.append(topPartNote);
         notesElement.append(textNote);
-        topPartNote.append(wrapperTitleAndDate);
+        topPartNote.append(titleNote);
         wrapperButtonControl.append(favouriteIcon);
         wrapperButtonControl.append(editIcon);
         wrapperButtonControl.append(delitIcon);
-        topPartNote.append(wrapperButtonControl);
-        wrapperTitleAndDate.append(titleNote, date);
+        topPartNote.append(wrapperDateAndButtons);
+        wrapperDateAndButtons.append(date, wrapperButtonControl);
 
         return listItemElement;
     });

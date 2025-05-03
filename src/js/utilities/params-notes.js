@@ -42,9 +42,9 @@ const topPartNoteParams = {
     attr: {},
 };
 
-const wrapperTitleAndDateParams = {
+const wrapperDateAndButtonsParams = {
     tagName: "div",
-    classList: ["flex", "gap-x-4", "items-center", "flex-wrap"],
+    classList: ["flex", "gap-x-4", "items-center", "flex-wrap", "mb-2"],
     attr: {},
 };
 
@@ -57,6 +57,7 @@ const titleNoteParams = {
         "truncate",
         "block",
         "max-w-[300px]",
+        "mb-2",
     ],
     attr: {
         "data-title": "",
@@ -143,7 +144,7 @@ export {
     listNotesParams,
     liParams,
     noteParams,
-    wrapperTitleAndDateParams,
+    wrapperDateAndButtonsParams,
     topPartNoteParams,
     titleNoteParams,
     dateParams,
