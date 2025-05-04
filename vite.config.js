@@ -4,14 +4,14 @@ import tailwindcss from '@tailwindcss/vite'
 export default defineConfig({
     base: "./",
     build: {
-        minify: false,
+        minify: true,
         sourcemap: true,
     },
     plugins: [
         tailwindcss(),
     ],
     css: {
-        minify: false,
+        minify: true,
         devSourcemap: true,
     },
 });
